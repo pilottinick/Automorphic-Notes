@@ -1,0 +1,474 @@
+\documentclass[12pt, letterpaper, twoside]
+{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz-cd}
+\usepackage{accents}
+
+\title{Tate's Thesis Notes}
+\author{Nick Pilotti}
+
+% Categories
+\newcommand{\ra}{\rightarrow}
+\newcommand{\xra}{\xrightarrow} % labeled arrow
+\newcommand{\Id}{{\text{Id}}} % the identity
+
+% Sets
+\newcommand{\sub}{{\; \subseteq \;}} % subset relation
+\newcommand{\super}{{\; \supseteq \;}} % superset relation
+\newcommand{\pow}{{\mathcal{P}}} % power set
+
+% Combinatorics
+\def\multiset#1#2{\ensuremath{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}}
+
+% Number systems
+\newcommand{\N}{{\mathbb N}} % natural numbers
+\newcommand{\Z}{{\mathbb Z}} % integers
+\newcommand{\Q}{{\mathbb Q}} % rationals
+\newcommand{\R}{{\mathbb R}} % reals
+\newcommand{\C}{{\mathbb C}} % complex numbers
+\newcommand{\F}{{\mathbb F}} % a finite field
+
+% Topology
+\newcommand{\Bd}{\text{Bd}} % boundary
+\newcommand{\Int}{\text{Int}} % interior
+
+% Algebraic Topology
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} % concatenation
+
+% Geometry
+\newcommand{\Proj}{\mathbb{P}} % projective space
+
+% Metric Spaces
+\newcommand{\D}{\mathbb{D}} % unit disk
+\newcommand{\B}{\mathbb{B}} % unit ball
+
+% Measure Theory
+\newcommand{\meas}{\mathcal{M}} % measurable sets
+\newcommand{\borel}{\mathcal{B}} % borel sets
+
+% Analysis
+\newcommand{\dd}[1]{\mathrm{d}#1} % differential
+\newcommand{\del}{\partial} % partial derivative
+\newcommand{\supp}{\text{supp} \:} % support of a function
+\newcommand{\BV}{\text{BV}} % bounded variation
+
+\newlength{\dhatheight}
+\newcommand{\doublehat}[1]{%
+    \settoheight{\dhatheight}{\ensuremath{\hat{#1}}}%
+    \addtolength{\dhatheight}{-0.35ex}%
+    \hat{\vphantom{\rule{1pt}{\dhatheight}}%
+    \smash{\hat{#1}}}} % Fourier transform
+
+% Complex Analysis
+\newcommand{\res}{\text{res}} % residue
+
+% Functional Analysis
+\newcommand{\Xcal}{\mathcal{X}} % normed vector space
+\newcommand{\Ycal}{\mathcal{Y}} % normed vector space
+\newcommand{\Hcal}{\mathcal{H}} % Hilbert space
+
+% General Algebra
+\newcommand{\Ker}{{\text{Ker}}} % kernel
+\newcommand{\Coker}{{\text{Coker}}} % cokernel
+\newcommand{\coker}{{\text{coker}}} % cokernel
+\newcommand{\Img}{{\text{Im}}} % image
+\newcommand{\img}{{\text{im}}} % image
+\newcommand{\Hom}{\text{Hom}} % the hom functor
+\newcommand{\End}{{\text{End}}} % endomorphisms
+\newcommand{\Aut}{{\text{Aut}}} % automorphisms
+
+% Group Theory
+\newcommand{\Orb}{\text{Orb}} % orbit
+\newcommand{\Stab}{{\text{Stab}}} % stabilizer
+\newcommand{\nor}{{\trianglelefteq} \; } % normal subgroup
+\newcommand{\Cent}{\text{Cent}} % center
+\newcommand{\Syl}{{\text{Syl}}} % sylow subgroups
+
+% Representation theory
+\newcommand{\Ind}{\text{Ind}} % induced representation
+\newcommand{\Res}{\text{Res}} % restriction
+
+% Specific groups
+\newcommand{\Sym}{{\text{Sym}}} % symmetric group
+\newcommand{\GL}{{\text{GL}}} % general linear group
+\newcommand{\PGL}{{\text{PGL}}} % projective general linear group
+\newcommand{\SL}{{\text{SL}}} % special linear group
+\newcommand{\PSL}{{\text{PSL}}} % projective special linear group
+\newcommand{\OR}{\text{O}} % orthogonal group
+\newcommand{\SO}{\text{SO}} % special orthogonal group
+\newcommand{\UN}{\text{U}} % unitary group
+\newcommand{\SU}{\text{SU}} % special unitary group
+
+% Rings
+\newcommand{\cha}{\text{char}} % characteristic
+\newcommand{\aI}{{\mathfrak{a}}} % an ideal
+\newcommand{\bI}{{\mathfrak{b}}} % an ideal
+\newcommand{\cI}{{\mathfrak{c}}} % an ideal
+\newcommand{\sI}{{\mathfrak{s}}} % an ideal
+\newcommand{\nI}{\mathfrak{n}} % an ideal
+\newcommand{\pI}{{\mathfrak{p}}} % a prime ideal
+\newcommand{\qI}{{\mathfrak{q}}} % a prime ideal
+\newcommand{\mI}{{\mathfrak{m}}} % a maximal ideal
+\newcommand{\nil}{\mathfrak{N}} % nilradical
+\newcommand{\jac}{\mathfrak{R}} % Jacobson radical
+\newcommand{\rad}{\text{rad}} % radical
+\newcommand{\oI}{\mathfrak{o}} % integral elements
+
+% Lie Algebras
+\newcommand{\gI}{\mathfrak{g}} % a Lie algebra
+\newcommand{\hI}{\mathfrak{h}} % a Lie algebra
+\newcommand{\Gl}{\mathfrak{gl}} % general linear
+\newcommand{\Sl}{\mathfrak{sl}} % special linear
+\newcommand{\Or}{\mathfrak{o}} % orthgonal
+\newcommand{\So}{\mathfrak{so}} % special orthogonal
+\newcommand{\Un}{\mathfrak{u}} % unitary
+\newcommand{\Su}{\mathfrak{su}} % special unitary
+\newcommand{\ad}{\text{ad}} % adjoint
+
+% Polynomials
+\newcommand{\cont}{\text{cont}} % content (of a polynomial)
+
+% Modules
+\newcommand{\Ann}{{\text{Ann}}} % annihilator
+
+% Linear Algebra
+\newcommand{\Mat}{{\text{Mat}}} % matrices
+\newcommand{\Tr}{{\text{Tr}}} % trace
+\newcommand{\diag}{\text{diag}} % diagonal matrix
+\newcommand{\Span}{\text{span}} % span
+
+% Fields and Galois Theory
+\newcommand{\K}{\mathbb{K}} % a field
+\newcommand{\Irr}{{\text{Irr}}} % irreducible polynomial
+
+% Algebraic Number Theory
+\newcommand{\disc}{{\text{disc}}} % discriminant
+
+% Algebraic Geometry
+\newcommand{\Spec}{\text{Spec}} % prime spectrum of a ring
+
+% misc
+\newcommand{\ol}{\overline}
+\begin{document}
+
+\maketitle
+
+\textbf{Lemma 2.2.1.}
+``$X(\eta \xi) = 1$, \text{ all } $\eta \implies k^+ \xi \neq k^+ \implies \xi =
+0$. Therefore the characters of the form $X(\eta \xi)$ are everywhere dense in
+the character group.'' 
+
+Let $N$ be the closure of the set $\{X(\eta \xi) : \eta \in k^+\}$ in
+$\hat{k^+}$. Let $\psi$ be a character of $\hat{k^+}/N$. Let $\pi : \hat{k^+}
+\ra \hat{k^+}/N$ be the projection map. The pullback $\psi' := \pi^*\psi$ is in
+$\hat{\hat{k^+}}$. By Pontryagin duality, there is $\xi \in G$ such that
+$\psi'(\chi) = \chi(\xi)$ for all $\chi \in \hat{k^+}$. $\psi'$ is trivial on
+$N$, hence $\psi'(X(\eta \; \cdot )) = X(\eta \xi) = 1$ for all $\eta \in k^+$,
+and by Tate's argument $\xi = 0$. Hence, $(\hat{k^+}/N)\string^ = 1$. Applying
+Pontryagin duality once again, $(\hat{k^+}/N)\string^\string^ \cong \hat{k^+}/N
+= 1$, hence $\hat{k^+} = N$ (we can only do this because $N$ is closed and
+therefore $\hat{k^+}/N$ is locally compact).
+
+``Local compactness implies completeness and therefore closure...''
+
+Let $G$ be a locally compact group and $H$ a locally compact subgroup. We show
+that $H$ is closed. Pick $x \not\in H$. $xH$ is a locally compact space.
+Therefore, there exists a compact neighborhood $V \sub xH$ of $x$. $V$ does not
+intersect $H$. Since $G$ is Hausdorff, $V$ is closed in the topology of $G$.
+Hence, $H$ is open. Since $H$ is a subgroup, $H$ is also closed.
+
+\textbf{Theorem 2.2.2.} ``For $k$ real we can take $f(\xi) =
+e^{-\pi|\xi|^2}$,....''
+
+The formula follows from $\hat{f}(\eta) = f(\eta)$ and $f(\xi) = f(-\xi)$. The
+ladder is obvious. For the former, we compute
+\[\hat{f}(\eta) = \int e^{-\pi|\xi|^2 + 2\pi i\eta \xi} \; d \xi =
+e^{-\pi|\eta|^2} \int e^{-\pi(\xi - i\eta)^2} \; d \xi\]
+\[= e^{-\pi|\eta|^2} \int e^{-\pi |\xi|^2} \; d \xi = e^{-\pi|\eta|^2} =
+f(\eta).\]
+
+``... for $k$ complex, $f(\xi) = e^{-2\pi|\xi|}$;...''
+
+Same as in the real case, the formula follows from $\hat{f}(\eta) = f(\eta)$ and
+$f(\xi) = f(-\xi)$. Write $\eta = u + iv$ and split into two real integrals;
+\[\hat{f}(\eta) = \int e^{-2\pi|\xi| + 2\pi i (\eta\xi + \ol{\eta}\ol{\xi})} \;
+d \xi = \int \int e^{-2\pi(x^2 + y^2) + 4\pi i(xu - yv)} 2 \; dx \; dy \]
+\[= \bigg( \int e^{-2\pi x^2 + 4\pi i u x} \sqrt{2} \; dx \bigg) \bigg( \int
+e^{-2\pi y^2 - 4\pi i v y} \sqrt{2} \; dy \bigg)\]
+\[= e^{-2\pi u^2 - 2\pi v^2} \bigg( \int e^{-2\pi(x - iu)^2} \sqrt{2} \; dx
+\bigg) \bigg( \int e^{-2\pi(y + iv)^2} \sqrt{2} \; dy \bigg)\]
+\[= e^{-2\pi(u^2 + v^2)} \bigg( \int e^{-2\pi x^2} \sqrt{2} \; dx \bigg) \bigg(
+e^{-2\pi y^2} \sqrt{2} \; dy\bigg)\]
+\[= e^{-2\pi(u^2 + v^2)}\]
+
+``...and for $k$ $\pI$-adic, $f(\xi) = $ the characteristic function of
+$\oI$,...'' 
+
+The Fourier transform of $f$ is
+\[\hat{f}(\eta) = \int_\oI e^{-2\pi i\Lambda(\eta\xi)} d\eta.\] By lemma
+$2.2.3$, the integrand is a trivial character if $\eta \in \mathfrak{d}^{-1}$
+and otherwise the integrand is a nontrivial character on the additive subgroup
+$\oI$. In the ladder case, the integral evaluates to zero by the Schur
+orthgonality relations, since $\oI$ is compact. Hence, $\hat{f}$ is the
+characteristic function of $\mathfrak{d}^{-1}$ multiplied by
+$(N\mathfrak{d})^{-1/2}$. The double fourier transform of $f$ is
+\[\doublehat{f}(\xi) = (N\mathfrak{d})^{-1/2} \int_{\mathfrak{d}^{-1}} e^{-2\pi
+i\Lambda(\xi\eta)} \; d \xi.\] Since $\mathfrak{d}^{-1}$ is a fractional ideal
+which contains $\oI$, we have $\mathfrak{d}^{-1} = \alpha^{-1} \oI$ for some
+$\alpha \in \oI$. Note that $\mathfrak{d} = \alpha\oI$, so $|\alpha| =
+(N\mathfrak{d})^{-1}$. Hence,
+\[\doublehat{f}(\xi) = (N\mathfrak{d})^{-1/2} \int_{\alpha^{-1} \oI} e^{-2\pi
+i\Lambda(\xi \alpha^{-1} \alpha \eta)} \; d \xi.\] By lemma $2.2.5.,$
+\[\doublehat{f}(\xi) = (N\mathfrak{d})^{1/2} \int_{\oI}
+e^{-2\pi\Lambda(\xi\alpha^{-1} \eta)} \; d \xi.\] By lemma $2.2.3.$, the
+integrand is a trivial character if $\alpha^{-1} \eta \in \mathfrak{d}^{-1} =
+\alpha^{-1} \oI$ or equivalently $\eta \in \oI$ and otherwise the integrand is a
+nontrivial character on the additive subgroup $\oI$. Hence, $\doublehat{f}(\xi)$
+is the characteristic function of $\oI$. We have $\doublehat{f}(\xi) = f(\xi) =
+f(-\xi)$, which completes the computation.
+
+\textbf{Lemma 2.4.1.} ``Using the fact that the integral is absolutely
+convergent for $s$ near $0$ to make estimates, it is a routine matter to show
+that the function has a derivative for $s$ near $0$. The derivative can in fact
+be computed by 'differentiating under the integral sign'.''
+
+By theorem $2.3.1.$, $c(\alpha) = \tilde{c}(\tilde{\alpha})|\alpha|^t$ where
+$\tilde{c}$ is a character of $u$ and $t$ is a complex number. We assume that
+$\tau = \text{Re}(t) > 0$. fix $0 < \sigma < \tau$ and suppose $|s| \leq
+\sigma$. Then,
+\[|f(\alpha)c(\alpha)|\alpha|^s| = |f(\alpha)||\alpha|^{\tau + \text{Re(s)}}
+\leq |f(\alpha)|(|\alpha|^{\tau - \sigma} + |\alpha|^{\tau + \sigma}) \in
+L^1(k^*)\] by $\mathfrak{z}_2$. Hence, the derivative for $s$ near $0$ may be
+computed by differentiating under the integral sign;
+\[\frac{\dd}{\dd s} \int f(\alpha)c(\alpha)|\alpha|^s \; \dd \alpha = \int
+f(\alpha)c(\alpha) \log(\alpha)|\alpha|^s \; \dd \alpha.\]
+
+\textbf{Lemma 2.4.3.} Errata: Line $2$. The final step expression should be
+$c(-1)\rho(c)\rho(\hat{c})\zeta(f, c)$.
+
+\textbf{2.5 Computation of $\rho(c)$ by Special $\zeta$-functions}
+
+\begin{center} \textbf{k Real} \end{center}
+
+We check the identities
+\[\hat(\xi) = f(\xi) \text{ and } \hat{f}_{\pm}(\xi) = if_{\pm}(\xi)\] The first
+was already proved in theorem $2.2.2.$ We prove the second;
+\[\hat{f}_{\pm}(\xi) = \int \eta e^{-\pi\eta^2 + 2\pi i \xi \eta} \; d \eta =
+e^{-\pi \xi^2} \int \eta e^{-\pi(\eta - i\xi)^2} \; d \eta\]
+\[= e^{-\pi\xi^2} \int (\eta + i\xi)e^{-\pi\eta^2} \; d \eta = e^{-\pi\xi^2}
+\bigg[\int \eta e^{-\pi\eta^2} \; d \eta + i \xi \int e^{-\pi\eta^2} \; d
+\eta\bigg]\]
+\[= i\xi e^{-\pi\xi^2} = i f_{\pm}(\xi)\]
+\textbf{Explicit Expressions for $\rho(c)$:}
+
+``... the second form follows from elementary $\Gamma$-functions identities.''
+
+The identities are
+\[\Gamma(s)\Gamma(1 - s) = \frac{\pi}{\sin \pi s} \text{ and } 2^{2s -
+1}\Gamma(s)\Gamma(s + 1/2) = \pi^{1/2}\Gamma(2s)\] The second formula can be
+written as
+\[\Gamma\bigg(\frac{s}{2}\bigg) =
+\frac{2^{1-s}\pi^{1/2}\Gamma(s)}{\Gamma(\frac{s + 1}{2})}\] Hence,
+\[\rho(||^s) = \frac{\pi^{-\frac{s}{2}} \Gamma ( \frac{s}{2} )}{\pi^{-\frac{1 -
+s}{2}}\Gamma( \frac{1 - s}{2} )} = \frac{2^{1 - s}\pi^{\frac{1 -
+s}{2}}\Gamma(s)}{\pi^{-\frac{1 - s}{2}}\Gamma(\frac{s + 1}{2})\Gamma(\frac{1 -
+s}{2})}\]
+\[= \frac{2^{1 - s}\pi^{1 - s}\Gamma(s)}{\Gamma(\frac{s + 1}{2})\Gamma(1 -
+\frac{s + 1}{2})} = 2^{1 - s}\pi^{-s}\sin \bigg(\frac{\pi(s +
+1)}{2}\bigg)\Gamma(s)\]
+\[= 2^{1 - s}\pi^{-s} \cos \bigg(\frac{\pi}{2}  - \frac{\pi(s +
+1)}{2}\bigg)\Gamma(s)\]
+\[= 2^{1 - s}\pi^{-s} \cos \bigg( \frac{\pi s}{2}\bigg) \Gamma(s).\] For
+$\rho(\pm||^s)$, we use
+\[\Gamma \bigg( \frac{s + 1}{2} \bigg) = \frac{2^{1 -
+s}\pi^{1/2}\Gamma(s)}{\Gamma(\frac{s}{2})}\] Hence,
+\[\rho(\pm||^s) = -i\frac{\pi^{-\frac{s + 1}{2}}\Gamma( \frac{s +
+1}{2})}{\pi^{-\frac{(1 - s) + 1}{2}}\Gamma( \frac{(1 - s) + 1}{2})} = -i
+\frac{2^{1 - s}\pi^{-s/2}\Gamma(s)}{\pi^{-\frac{(1 - s) +
+1}{2}}\Gamma(\frac{s}{2})\Gamma(\frac{(1 - s) + 1}{2})}\]
+\[= -i \frac{2^{1 - s}\pi^{1 -s}\Gamma(s)}{\Gamma(\frac{s}{2})\Gamma(1 -
+\frac{s}{2})} = -i2^{1 - s}\pi^{- s}\sin \bigg( \frac{\pi s}{2}\bigg)\Gamma(s)\]
+
+Errata: In the first form of $\rho(\pm ||^s)$, the minus sign out front is
+missing.
+\begin{center} \textbf{k Complex} \end{center} Errata: In the first equation on
+page $319$, the first plus sign should be a minus.
+
+Errata (?): In the expressions for $\zeta(f_n, c_n||^s)$, the exponent of $2\pi$
+should be $(1 - s) - \frac{|n|}{2}$. This term cancels out, so the expression
+for $\rho(c_n||^s)$ is still correct. 
+
+\begin{center} \textbf{k $\pI$-adic} \end{center}
+
+\textbf{Root numbers and Gauss sums.} In the case of $\Q_p$, the roots numbers
+are the ``signed'' part of a Gauss sum. For each $n \geq 1$, there is a ring
+homomorphism $\Q_p \ra \Z/p^n\Z$ given by reduction modulo $p^n$. Restricting to
+the group of units $u$, this gives group homomorphism $u \ra (\Z/p^n)^\times$.
+The kernel is $(1 + p^n\Z_p)$, so we have an isomorphism $u/(1 + p^n\Z_p) \cong
+(\Z/p^n)^\times$. Hence, a character on $u$ with conductor $n$ is lifted from a
+character on $(\Z/p^n)^\times$. Conversely, if $\chi$ is a Dirichlet character
+with conductor $p^n$, then $\chi$ defines a character on $u$ with conductor $n$.
+
+Suppose that $c$ is a character on $\Z_p^\times$ and $\chi$ its corresponding
+Dirichlet character. Tate's formula for the roots number of $c$ gives
+\[\rho_0(c) = p^{-n/2} \sum_{\substack{\epsilon \text { mod } p^n \\ (\epsilon,
+p^n) = 1}} \chi(\epsilon) e^{2\pi i \epsilon/p^n}\] which is a Gauss sum times
+$p^{-n/2}$. Since we know the root number lies on the unit circle, this is the
+``signed'' part of the Gauss sum and $p^{n/2}$ is the modulus of the Gauss sum.
+Therefore, the root numbers are a generalization of Gauss sums.
+
+\textbf{Lemma 4.2.2.} ``...the inversion formula holds.'' Why is the counting
+measure on $k$ dual to the measure which gives $V$ mod $k$ volume 1? If we let
+$\varphi \equiv 1$ on $V$ mod $k$, we see that its Fourier transform is the
+charactertic function of $0$ by the Schur orthgonality relations. Hence,
+\[\doublehat{\varphi}(-\mathfrak{X}) = \sum_{\xi \in k}
+\hat{\varphi}(\xi)e^{2\pi i \Lambda} = \hat{\varphi}(0)e^0 = 1 =
+\varphi(\mathfrak{X}).\] This is easily generalized to any compact abelian
+group. The counting measure on its character group is always dual to measure
+which gives $G$ volume $1$.
+
+\textbf{Theorem 4.2.1.} How is this equivalent to geometric Riemann-Roch
+theorem?
+
+\begin{center} \textbf{$k$ in the large!} \end{center}
+
+\textbf{Riemann zeta function.} In the case $k = \Q$ and $c = 1$ we get the
+(completed) Riemann zeta function. We pick $f_\infty(t) = e^{-\pi t^2}$ and
+$f_p$ to be the characteristic function of $\Z_p$ for each prime $p$. We showed
+above that each local function is its own Fourier transform, so in this case
+$\hat{f} = f$. The zeta function is
+\[\zeta(f, ||^s) = \int f(\aI)|\aI|^s \; \dd \aI\]
+\[= \bigg(\int_{\R^\times} e^{-\pi t^2} |t|^s \; \dd t \bigg) \bigg(\prod_{p
+\nmid \infty} \int_{\Z_p} |\alpha|^s \; \dd \alpha \bigg).\] At the Archimedean
+place, the integral is
+\[2 \int_0^\infty e^{-\pi t^2} t^{s} \; \frac{dt}{t} =
+\pi^{-\frac{s}{2}}\Gamma\bigg( \frac{s}{2}\bigg).\] At the finite places, we
+evaluate by summing over each annulus $p^v u$ with $u$ the group of units in
+$\Z_p$. Since $\dd \alpha$ is a multiplicative Haar measure, $\int_{p^v u} \;
+\dd \alpha = \int_u \; \dd \alpha = 1$. We have,
+\[\int_{\Z_p} |\alpha|^s \; \dd \alpha = \sum_{v = 0}^\infty \int_{p^vu}
+|\alpha|^s \; \dd \alpha = \sum_{v = 0}^\infty p^{-vs} = \frac{1}{1 - p^{-s}}.\]
+
+Hence,
+\[\zeta(f, ||^s) = \pi^{-\frac{s}{2}}\Gamma \bigg(\frac{s}{2}\bigg) \prod_p
+\frac{1}{1 - p^{-s}}\] and the functional equation
+\[\zeta(f, ||^s) = \zeta(\hat{f}, ||^{1 - s})\] is the usual functional equation
+for the Riemann zeta function. 
+
+This is often written in the form
+\[\zeta(s) = 2^{s}\pi^{s -1} \sin \bigg( \frac{\pi s}{2} \bigg) \Gamma(1 - s)
+\zeta(1 - s)\]
+\[= \frac{\pi^{-\frac{1 - s}{2}}\Gamma(\frac{1 - s}{2})}{\pi^{-\frac{s}{2}}
+\Gamma(\frac{s}{2})} \zeta(1 - s)\] where $\zeta$ is the usual (non-completed)
+Riemann zeta function. The factor out front is simply the inverse of the local
+factor for $\R$.
+
+\textbf{Characters on $\Q$.} Remaining in the case $k = \Q$ but allowing $c$ to
+be non-trivial, we get the (completed) Dirichlet $L$-functions. Recall from
+above that each equivalence class of quasi-characters on a $p$-adic field $\Z_p$
+with conductor $n \geq 0$ is represented by Dirichlet character with conductor
+$p^n$. Equivalence classes of characters on $\R$ are represented by the
+characters $\text{sgn}(x)^{\epsilon}$ with $\epsilon$ an equivalence class of
+$\Z$ mod $2$. Let $c(\aI)$ be a general character of the ideles. Let $S$ be a
+finite set which contains the Archimedean prime and all primes where $c_p$ is
+ramified. $S'$ will denote $S \setminus \{\infty\}$. $c(\aI)$ is of the form
+\[c(\aI) = \prod_{p \in S} \tilde{c}_p(\tilde{a}_p) \cdot \prod_{p \in S}
+|a|_p^{it_p} \cdot \chi(\varphi_S(\aI))\] where for $p \in S'$ the $\tilde{c}_p$
+are ramified characters with conductor $n_p \geq 1$ on $\Z_p^\times/(1 +
+p^{n_p}\Z_p) \cong (\Z/p^{n_p}\Z)^\times$, $t_p$ are real numbers, and $\chi$ is
+a character on the subgroup of nonzero rational numbers which are in
+$\Z_p^\times$ for each $p \in S'$. The map $\varphi_S$ takes $\aI$ to its ideal
+in $\Q$ and removes the primes in $S'$ from its factorization. Let $n = \prod_{p
+\in S'} p^n_p$. For an idele $\aI$, let $\tilde{\aI} = \prod_{p \in S'}
+\tilde{a}_p$ and define $\psi(\tilde{\aI}) = \prod_{p \in S'}
+\tilde{c}_p(\tilde{a}_p)$. $\psi$ is a character on the group $\prod_{p \in S'}
+\Z_p^\times/(1 + p^n\Z_p) \cong \prod_{p \in S'} (\Z/n_p\Z)^\times \cong
+\Z/n\Z^\times$. Hence, $\psi$ is associated to a Dirichlet character with
+conductor $n$.
+
+We are only considering characters where $c(x) = 1$ for all $x \in \Q^\times$. A
+great deal of simplication occurs because $\Q$ has class number $1$. For $p \in
+S'$ we have
+\[1 = c(p^k) = p^{ik(t_\infty - t_p)}\] for all $k \in \Z$. Hence, the $t_p$ are
+all equal for $p \in S$. Since we are only concerned with equivalence classes of
+characters, we may suppose that $t_p = 0$ for all $p \in S$. We have
+$\tilde{c}_\infty(\tilde{a}_\infty) = \text{sgn}(a_\infty)^\epsilon$ for
+$\epsilon$ and equivalence class of $\Z$ mod $2$. Plugging in $-1$ gives
+\[1 = c(-1) = (-1)^{\epsilon} \psi(-1)\] Thus, $\epsilon$ is determined by the
+sign of the character $\psi(-1)$. Our formula for $c(\aI)$ simplifies to
+\[c(\aI) = \text{sgn}(a_\infty)^\epsilon \psi(\tilde{a}) \chi(\varphi_S(\aI)).\]
+Finally, since $\Q$ has class number $1$, $\chi$ is determined by its values
+$\chi(\varphi_S(x))$ for $x \in \Q^\times$. These are just
+\[\chi(\varphi_S(x)) = \text{sgn}(x)^\epsilon \ol{\psi}(\tilde{x})\]
+
+\textbf{Dirichlet L-functions.} With $c(\aI)$ selected as in the remaining
+paragraph, pick $f_\infty(t) = e^{-\pi t^2}$ if $\epsilon \equiv 0$ and
+$f_\infty(t) = te^{-\pi t^2}$ if $\epsilon \equiv 1$. For $p \in S'$, pick $f_p$
+to be the characteristic function of $p^{-n_p}\Z_p$. For $p \not\in S$, pick
+$f_p$ to be the characteristic function of $\Z_p$. The zeta function of $f$ is
+\[\zeta(f, c||^s) = \int f(\aI)|\aI|^s \; \dd \aI\]
+\[\bigg( \int_{\R^\times} \text{sgn}(t)^\epsilon e^{-\pi t^2} |t|^s \; \dd t
+\bigg) \bigg( \prod_{p \in S'} \int_{p^{-n_p}\Z_p}
+\tilde{c_p}(\tilde{\alpha})|\alpha|^s \; \dd \alpha\bigg) \bigg( \prod_{p
+\not\in S} \int_{\Z_p} |\alpha|^{s + it_p} \; \dd \alpha \bigg)\] The $t_p$ are
+real numbers defined by $\chi(\varphi_S(\aI)) = \prod_{p \not\in S}
+|a_p|^{it_p}$, since we recall that $c_p(\aI)$ is an unramified character for $p
+\not\in S$. The integral at the Archimedean place is either
+\[\pi^{-\frac{s}{2}} \Gamma \bigg( \frac{s}{2} \bigg)\] or
+\[\pi^{-\frac{s + 1}{2}} \Gamma \bigg( \frac{s + 1}{2}\bigg)\] according to
+whether $\epsilon = 0$ or $\epsilon = 1$. We can write both conditions together
+as 
+\[\pi^{-\frac{s + \epsilon}{2}} \Gamma \bigg( \frac{s + \epsilon}{2} \bigg)\]
+The local factors $p \in S'$ are computed by Tate in section $2.5$ to be
+\[p^{n_ps} \tau(\tilde{c}_p) \int_{1 + p^{n_p}\Z_p} \; \dd \alpha =
+\frac{p^{n_ps}\tau(\tilde{c}_p)}{p^{n_p} - p^{{n_p} - 1}}\] where $\tau$ denotes the
+Gauss sum, according to our observation above. The group of units $\Z_p^\times$
+has measure $1$ in the multiplicative Haar measure and $\Z_p^\times/(1 +
+p^{n_p}\Z_p) \cong \Z_{p^n}^\times$ has cardinality $p^{n_p} - p^{n_p - 1}$,
+from which we get the measure of $1 + p^{n_p}\Z_p$ (in the functional equation
+these terms will cancel out, since they do not depend on $s$). Finally, the
+factors at $p \not\in S$ are
+\[\frac{1}{1 - p^{-s + it_p}}.\] Their product is the Dirichlet L-function
+associated to $\ol{\chi}$;
+\[\prod_{p \not\in S} \frac{1}{1 - p^{-s + it_p}} = \sum_{n = 1}^\infty
+\frac{\ol{\chi}(n)}{n^{s}}.\] This can be seen by writing
+\[\prod_{p \not\in S} \frac{1}{1 - p^{-s + it_p}} = \prod_{p \not\in S} \sum_{v
+= 0}^\infty p^{ivt_p}p^{-vs} = \sum_{\substack{n = 1 \\ p \nmid n, \forall p \in
+S'}}^\infty \bigg(\prod_{p \not\in S} |n|_p^{-it_p} \bigg)n^{-s} = \sum_{n =
+1}^\infty \frac{\ol{\chi}(n)}{n^s}\] Recall we extend $\chi$ to $\Z$ by writing
+$\chi(n) = 0$ if $p \nmid n$ for some $p \in S'$. Now it is clear that $p^{it_p}
+= \ol{\chi(p)}$. The product of the local factors for $p \in S'$ is
+\[\prod_{p \in S'} \frac{p^{n_ps}\tau(\tilde{c}_p)}{p^{n_p} - p^{n_p - 1}} =
+\frac{n^s \tau(\tilde{c}_p)}{C}\] where $C$ is a constant not depending on $s$.
+A formula for $C$ is 
+\[\sum_{k = 0}^{|S'|} \sum_{p_1, ..., p_k \in S'}(-1)^k \frac{n}{p_1...p_k}\]
+although I don't think this is important.
+
+
+
+Putting all of this together, the zeta
+function is
+\[\zeta(f, \chi||^s) = C\pi^{-\frac{s + \epsilon}{2}} \Gamma\bigg( \frac{s +
+\epsilon}{2} \bigg)n^{s + 1} (-1)^{\epsilon}\tau(\ol{\chi}) \prod_{p \nmid n}
+\frac{1}{1 - \chi(p)p^{-s}}\] The zeta function of the Fourier transform is the
+same (replacing $s$ with $1 - s$ and $\chi$ with $\ol{\chi}$) except when $p \in
+S'$ where the local factors are
+\[\frac{p^{n_p}}{p^{n_p} - p^{n_p - 1}}\] and the real place you must multiply
+by $i^\epsilon$. The zeta function of the transform is
+\[\zeta(\hat{f}, \chi||^s) = Ci^\epsilon\pi^{-\frac{(1 - s) +
+\epsilon}{2}}\Gamma\bigg( \frac{(1 - s) + \epsilon}{2} \bigg)n \prod_{p \nmid n}
+\frac{1}{1 - \ol{\chi}(p)p^{-(1 - s)}}\]
+
+Now, letting $L(s, \chi)$ be the usual Dirichlet zeta function, the functional
+equation is
+\[L(s, \chi) = (-i)^{\epsilon} \tau(\chi) n^{- s} \frac{\pi^{-\frac{(1 - s) +
+\epsilon}{2}}\Gamma(\frac{(1 - s) + \epsilon}{2})}{\pi^{-\frac{s + \epsilon}{2}}
+\Gamma(\frac{s + \epsilon}{2})} L(1 - s, \ol{\chi})\]
+\[= \frac{\tau(\chi)}{i^\epsilon \sqrt{n}}n^{1/2-s}2^s\pi^{s -
+1}\sin\bigg(\frac{\pi}{2}(s + \epsilon)\bigg)\Gamma(1 - s)L(1 - s, \ol{\chi})\]
+\end{document}

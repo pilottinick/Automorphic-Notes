@@ -1,0 +1,343 @@
+\documentclass[12pt, letterpaper, twoside]
+{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz-cd}
+\usepackage{accents}
+
+\title{L-functions for GL(2)}
+\author{Nick Pilotti}
+
+% Categories
+\newcommand{\ra}{\rightarrow}
+\newcommand{\xra}{\xrightarrow} % labeled arrow
+\newcommand{\Id}{{\text{Id}}} % the identity
+
+% Sets
+\newcommand{\sub}{{\; \subseteq \;}} % subset relation
+\newcommand{\super}{{\; \supseteq \;}} % superset relation
+\newcommand{\pow}{{\mathcal{P}}} % power set
+
+% Combinatorics
+\def\multiset#1#2{\ensuremath{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}}
+
+% Number systems
+\newcommand{\N}{{\mathbb N}} % natural numbers
+\newcommand{\Z}{{\mathbb Z}} % integers
+\newcommand{\Q}{{\mathbb Q}} % rationals
+\newcommand{\R}{{\mathbb R}} % reals
+\newcommand{\C}{{\mathbb C}} % complex numbers
+\newcommand{\F}{{\mathbb F}} % a finite field
+
+% Topology
+\newcommand{\Bd}{\text{Bd}} % boundary
+\newcommand{\Int}{\text{Int}} % interior
+
+% Algebraic Topology
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} % concatenation
+
+% Geometry
+\newcommand{\Proj}{\mathbb{P}} % projective space
+
+% Metric Spaces
+\newcommand{\D}{\mathbb{D}} % unit disk
+\newcommand{\B}{\mathbb{B}} % unit ball
+
+% Measure Theory
+\newcommand{\meas}{\mathcal{M}} % measurable sets
+\newcommand{\borel}{\mathcal{B}} % borel sets
+
+% Analysis
+\newcommand{\dd}[1]{\mathrm{d}#1} % differential
+\newcommand{\del}{\partial} % partial derivative
+\newcommand{\supp}{\text{supp} \:} % support of a function
+\newcommand{\BV}{\text{BV}} % bounded variation
+
+\newlength{\dhatheight}
+\newcommand{\doublehat}[1]{%
+    \settoheight{\dhatheight}{\ensuremath{\hat{#1}}}%
+    \addtolength{\dhatheight}{-0.35ex}%
+    \hat{\vphantom{\rule{1pt}{\dhatheight}}%
+    \smash{\hat{#1}}}} % Fourier transform
+
+% Complex Analysis
+\newcommand{\res}{\text{res}} % residue
+
+% Functional Analysis
+\newcommand{\Xcal}{\mathcal{X}} % normed vector space
+\newcommand{\Ycal}{\mathcal{Y}} % normed vector space
+\newcommand{\Hcal}{\mathcal{H}} % Hilbert space
+
+% General Algebra
+\newcommand{\Ker}{{\text{Ker}}} % kernel
+\newcommand{\Coker}{{\text{Coker}}} % cokernel
+\newcommand{\coker}{{\text{coker}}} % cokernel
+\newcommand{\Img}{{\text{Im}}} % image
+\newcommand{\img}{{\text{im}}} % image
+\newcommand{\Hom}{\text{Hom}} % the hom functor
+\newcommand{\End}{{\text{End}}} % endomorphisms
+\newcommand{\Aut}{{\text{Aut}}} % automorphisms
+
+% Group Theory
+\newcommand{\Orb}{\text{Orb}} % orbit
+\newcommand{\Stab}{{\text{Stab}}} % stabilizer
+\newcommand{\nor}{{\trianglelefteq} \; } % normal subgroup
+\newcommand{\Cent}{\text{Cent}} % center
+\newcommand{\Syl}{{\text{Syl}}} % sylow subgroups
+
+% Representation theory
+\newcommand{\Ind}{\text{Ind}} % induced representation
+\newcommand{\Res}{\text{Res}} % restriction
+
+% Specific groups
+\newcommand{\Sym}{{\text{Sym}}} % symmetric group
+\newcommand{\GL}{{\text{GL}}} % general linear group
+\newcommand{\PGL}{{\text{PGL}}} % projective general linear group
+\newcommand{\SL}{{\text{SL}}} % special linear group
+\newcommand{\PSL}{{\text{PSL}}} % projective special linear group
+\newcommand{\OR}{\text{O}} % orthogonal group
+\newcommand{\SO}{\text{SO}} % special orthogonal group
+\newcommand{\UN}{\text{U}} % unitary group
+\newcommand{\SU}{\text{SU}} % special unitary group
+
+% Rings
+\newcommand{\cha}{\text{char}} % characteristic
+\newcommand{\aI}{{\mathfrak{a}}} % an ideal
+\newcommand{\bI}{{\mathfrak{b}}} % an ideal
+\newcommand{\cI}{{\mathfrak{c}}} % an ideal
+\newcommand{\sI}{{\mathfrak{s}}} % an ideal
+\newcommand{\nI}{\mathfrak{n}} % an ideal
+\newcommand{\pI}{{\mathfrak{p}}} % a prime ideal
+\newcommand{\qI}{{\mathfrak{q}}} % a prime ideal
+\newcommand{\mI}{{\mathfrak{m}}} % a maximal ideal
+\newcommand{\nil}{\mathfrak{N}} % nilradical
+\newcommand{\jac}{\mathfrak{R}} % Jacobson radical
+\newcommand{\rad}{\text{rad}} % radical
+\newcommand{\oI}{\mathfrak{o}} % integral elements
+
+% Lie Algebras
+\newcommand{\gI}{\mathfrak{g}} % a Lie algebra
+\newcommand{\hI}{\mathfrak{h}} % a Lie algebra
+\newcommand{\Gl}{\mathfrak{gl}} % general linear
+\newcommand{\Sl}{\mathfrak{sl}} % special linear
+\newcommand{\Or}{\mathfrak{o}} % orthgonal
+\newcommand{\So}{\mathfrak{so}} % special orthogonal
+\newcommand{\Un}{\mathfrak{u}} % unitary
+\newcommand{\Su}{\mathfrak{su}} % special unitary
+\newcommand{\ad}{\text{ad}} % adjoint
+
+% Polynomials
+\newcommand{\cont}{\text{cont}} % content (of a polynomial)
+
+% Modules
+\newcommand{\Ann}{{\text{Ann}}} % annihilator
+
+% Linear Algebra
+\newcommand{\Mat}{{\text{Mat}}} % matrices
+\newcommand{\Tr}{{\text{Tr}}} % trace
+\newcommand{\diag}{\text{diag}} % diagonal matrix
+\newcommand{\Span}{\text{span}} % span
+
+% Fields and Galois Theory
+\newcommand{\K}{\mathbb{K}} % a field
+\newcommand{\Irr}{{\text{Irr}}} % irreducible polynomial
+
+% Algebraic Number Theory
+\newcommand{\disc}{{\text{disc}}} % discriminant
+
+% Algebraic Geometry
+\newcommand{\Spec}{\text{Spec}} % prime spectrum of a ring
+
+% misc
+\newcommand{\ol}{\overline}
+\begin{document}
+
+\maketitle
+
+\textbf{The case of modular forms.} Before discussing $L$-functions for
+$\GL(2)$, let us first recall $L$-functions for cusp forms, so that we can draw
+analogies between the two theories. Let $f$ be a cusp form of level $1$ and
+weight $k$ with Fourier expansion
+\[f(z) = \sum a_n e^{2\pi i n z}.\] There is an associated $L$-function
+\[L(s, f) = \sum a_n n^{-s}\] which can be recognized as a Mellin transform of
+$f$
+\[\Lambda(s, f) = (2\pi)^{-s}\Gamma(s)L(s, f) = \int_0^{\infty} f(iy)y^s \;
+\dd^* y.\]
+
+This is seen by substituting the Fourier expansion for $f$,
+\[\Lambda(s, f) = \int_0^\infty f(iy)y^s \; d^* y = \int_0^\infty \sum
+a_ne^{-2\pi ny} y^s \; \dd^* s.\] Swapping the integral and sum and making the
+substitution $2\pi n y \mapsto y$, we get
+\[\Lambda(s, f) = (2\pi)^{-s}\Gamma(s)\sum a_nn^{-s}\] Convergence of the
+integral and the validity of these operations follows from the ``moderate
+growth'' properties of $f$. In case $f$ is a normalized Hecke eigenform, we also
+have an Euler product
+\[\Lambda(s, f) = (2\pi)^{-s}\Gamma(s) \prod_p \frac{1}{1 - a_pp^{-s} + p^{k - 1
+- 2s}}.\] The functional equation for $\Lambda(s, f)$ follows from the
+functional equation $f(iy) = (-1)^{k/2}y^{-k}f(i/y)$ in the following way
+\[\Lambda(s, f) = \int_0^\infty f(iy)y^{s} \; \dd^* s = (-1)^{k/2} \int_0^\infty
+f(i/y) y^{s - k} \; \dd^* s.\] The substitution $y \mapsto y^{-1}$ gives
+\[\Lambda(s, f) = (-1)^{k/2}\Lambda(k - s, f).\]
+
+In fact, the functional equation for $f$ is \textit{equivalent} to the
+functional equation for $\Lambda$, in a sense which is made precise by the
+\textit{converse theorem}:
+
+Let $a_n$ be a sequence of complex numbers such that $|a_n| = O(n^k)$ for some
+real number $k$. Let $f(z) = \sum a_n e^{2\pi i n z}$. If $\Lambda(s, f)$ has
+analytic continuation to all $s$, is bounded in every vertical strip $\sigma_1
+\leq \text{re}(s) \leq \sigma_2$, and satisfies $\Lambda(s, f) =
+(-1)^{k/2}\Lambda(k - s, f)$, then $f$ is a cusp form of level $1$ and weight
+$k$. If the Euler product is valid, $f$ is a normalized Hecke eigenform.
+
+All of the above result can be generalized to the case of ``twisting'' by a
+multiplicative character $\chi$.
+
+\textbf{Local Whittaker models and local multiplicity one.} The analogue of
+Fourier expansion in the theory of automorphic forms comes from Whittaker
+models. Let $F$ be a non-Archimedean local field, $\psi$ a nontrivial additive
+character of $F$, and let $(\pi, V)$ be an irreducible admissible reprensetation
+of $\GL(2, F)$. There exists at most one space $\mathcal{W}$ of functions in
+$\GL(2, F)$ such that if $W \in \mathcal{W}$, then
+\[W \bigg( \begin{pmatrix} 1 & x \\ 0 & 1 \end{pmatrix} g\bigg) = \psi(x)W(g)\,
+\; x \in F, g \in \GL(2, F)\] and such that $W$ is closed under right
+translation by elements of $\GL(2, F)$, and the resulting reprensetation of
+$\GL(2, F)$ is isomorphic of $\pi$. Such a space of function $\mathcal{W}$ is
+called a \textit{Whittaker model} for $(\pi, V)$. There is a similar definition
+for Archimedean local fields, which I will omit. The local multiplicity one
+theorem holds in the Archimedean case as well.
+
+\textbf{Whittaker models.} Let $F$ be a global field and $A$ its adele ring. We
+fix $\psi$ a nontrivial character of $A/F$. $\psi$ decomposes into local
+characters $\psi_v$ (c.f. Tate's thesis, section $4.1.$). Let $\pi$ be an
+irreducible admissible representation of $\GL(2, A)$. A \textit{Whittaker model}
+of $\pi$ with respect to the nontrivial character $\psi$ is a space of functions
+of $\GL(2, A)$ which are
+
+$(i)$ smooth,
+
+$(ii)$ $K$-finite,
+
+$(iii)$ of moderate growth,
+
+$(iv)$ and satisfying
+\[W \bigg( \begin{pmatrix} 1 & x \\ 0 & 1 \end{pmatrix} g \bigg) = \psi(x)
+W(g)\] for all $x \in A$.
+
+\textbf{Multiplicity one.} $(\pi, V)$ has a Whittaker model $\mathcal{W}$ with
+respect to $\psi$ if and only if each $(\pi_v, V_v)$ has a Whittaker model $W_v$
+with respect to the character $\psi_v$ of $F_v$. If this is the case, the
+$\mathcal{W}$ is unique and consists of all finite linear combinations of
+functions of the form $W(g) = \prod_v W_v(g_v)$ where $W_v \in \mathcal{W}_v$,
+and $W = W_v^\circ$ for almost all $v$, where $W_v^\circ$ spherical elements of
+$\mathcal{W}_v$, normalized so $W_v^\circ(k_v) = 1$ for $k_v \in \GL(2, \oI_v)$.
+
+\textbf{Existence of Whittaker models for automorphic cuspidcal
+representations.} Now suppose that $\pi$ is an automorphic cuspidal
+representation. If $\phi \in V$ and $g \in \GL(2, A)$, let
+\[W_\phi(g) = \int_{A/F} \phi \bigg( \begin{pmatrix} 1 & x \\ 0 & 1
+\end{pmatrix} g\bigg) \psi(-x) \; \dd x.\] Then the space $\mathcal{W}$ of
+functions $W_\phi$ is a Whittaker model for $\pi$. We have the ``Fourier
+expansion''
+\[\phi(g) = \sum_{\alpha \in F^\times} W_\phi\bigg( \begin{pmatrix} \alpha & 0
+\\ 0 & 1 \end{pmatrix} g\bigg).\]
+
+\textbf{The global zeta integral.} $Z$ is analogous to $\Lambda$ from the case
+of modular forms. It is the ``completed global $L$-function.'' For $\phi \in V$,
+\[\phi \begin{pmatrix} y & 0 \\ 0 & 1 \end{pmatrix}\] is rapidly decreasing as
+$|y| \ra \infty$. That is, for any $N > 0$ there exists a constant $C_N$ such
+that
+\[\phi \begin{pmatrix} y & 0 \\ 0 & 1 \end{pmatrix} < C_N|y|^{-N}.\]
+
+Hence,
+\[Z(s, \phi) = \int_{A^\times/F^\times} \phi \begin{pmatrix} y & 0 \\ 0 & 1
+\end{pmatrix} |y|^{s - 1/2} \; \dd^* y\] is absolutely convergent for all values
+of $s$. By the Fourier expansion, we have
+\[Z(s, \phi) = \int_{A^\times / F^\times} \sum_{\alpha \in F^\times }
+W_\phi\begin{pmatrix}\alpha y & 0 \\ 0 & 1 \end{pmatrix} |y|^{s - 1/2} \; \dd^*
+y = \int_{A^\times} W_\phi \begin{pmatrix} y & 0 \\ 0 & 1 \end{pmatrix} |y|^{s -
+1/2} \; \dd^* y\] provided this integral is absolutely convergent. Absolute
+converges occurs when $\text{re}(s) > 3/2$. We may write $W(g) = \prod_v
+W_v(g_v)$ and suppose that the vector $\phi$ corresponds to a pure tensor
+$\otimes_v \phi_v$. $Z$ decomposes as an Euler product
+\[Z(s, \phi) = \prod_v Z_v(s, W_v),\] where
+\[Z_v(s, W_v) = \int_{F_v^\times} W_v \begin{pmatrix} y_v & 0 \\ 0 & 1
+\end{pmatrix} |y_v|_v^{s - 1/2} \; \dd^* y_v.\] Absolute convergence of the
+local factors occurs when $\text{re}(s) > 1/2$.
+
+\textbf{The local $L$-functions.} Let $F$ be a non-Archimedean local field and
+$\oI$ its ring of integers. We say that a mutliplicative character of $F$ is
+unramified it is trivial on the group of units of $F$. If $\chi_1$ and $\chi_2$
+are unramified multiplicative characters of $F$, their principal series
+representation of $\GL(2, F)$, denoted $\pi(\chi_1, \chi_2)$, is spherical,
+i.e., has a $\GL(2, \oI)$-fixed vector. Let $\alpha_1 = \chi(\varpi)$ and
+$\alpha_2 = \chi_2(\varpi)$ where $\varpi$ is a uniformizer of $F$. We call
+$\alpha_1$ and $\alpha_1$ the \textit{Satake parameters} of $\pi(\chi_1,
+\chi_2)$. If $\pi(\chi_1, \chi_2)$ is unitary, $\alpha_1$ and $\alpha_2$ lie on
+the unit circle. Let $q$ be the cardinality of the residue fied $\oI/(\varpi)$.
+We call
+\[L(s, \pi) = (1 - \alpha_1q^{-s})^{-1}(1 - \alpha_2q^{-s})^{-1}\] the local
+$L$-function of $\pi$.
+
+\textbf{Equality of $Z_v$ and $L_v$.} Write $\pi = \otimes_v \pi_v$ is a tensor
+product of local reprensetations $(\pi_v, V_v)$. For a place $v$, $F_v$ denotes
+its corresponding local field and $\oI_v$ its ring of integers for
+non-Archimedean $v$. We say that a place $v$ is unramified if $v$ is
+non-Archimedean, $\pi_v$ is a spherical principal series, the conductor of the
+additive character $\psi_v$ is $\oI_v$, the vector $\phi_v$ is the spherical
+vector in the representation, and Whittaker function $W_v$ is normalized so that
+$W_v(1) = 1$. These conditions are true for almost all $v$. 
+
+If $v$ is unramified, then for $s$ sufficiently large,
+\[Z_v(s, W_v) = L_v(s, \pi_v).\]
+
+\textbf{The (partial) global L-function.} We assume the central chracter
+$\omega$ of $\pi$ is unitary. Let $S$ be a finite set of places such that if $v
+\not\in S$, $\pi_v$ is spherical. Let
+\[L_S(s, \pi) = \prod_{v \not\in S} L_v(s, \pi_v).\]
+
+\textbf{Twisting.} All of the previous results hold in the more general case of
+twisting by a unitary Hecke character $\xi$. For instance, we define
+\[Z(s, \psi, \xi) = \int_{A^\times/F^\times} \phi \begin{pmatrix} y & 0 \\ 0 & 1
+\end{pmatrix}\xi(y)|y|^{s - 1/2} \; \dd^\times y\] and all the other definitions
+are modified in a similar way.
+
+\textbf{The global functional equation.} Let
+\[w_1 = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}.\] Because $\phi$ is
+automorphic,
+\[Z(s, \phi, \xi) = \int_{A^\times/F^\times} \phi \bigg( w_1 \begin{pmatrix} y &
+0 \\ 0 & 1 \end{pmatrix}\bigg) |y|^{s - 1/2} \xi(y) \; \dd^* y\]
+\[= \int_{A^\times/F^\times} \phi \bigg( \begin{pmatrix} 1 & 0 \\ 0 & y
+\end{pmatrix} w_1\bigg) |y|^{s - 1/2} \xi(y) \; \dd^* y.\] Substituting $y^{-1}$
+for $y$, the above is equal to
+\[\int_{A^\times/F^\times} (\pi(w_1)\phi) \begin{pmatrix} y & 0 \\ 0 & 1
+\end{pmatrix} |y|^{-s + 1/2} (\xi\omega)^{-1}(y) \; \dd^* y.\] Hence,
+\[Z(s, \phi, \xi) = Z(1 - s, \pi(w_1)\phi, \xi^{-1}\omega^{-1})\]
+
+
+\textbf{Local funcitonal equation.} The local zeta integral $Z_v(s, W_v)$ has
+meromorphic continuation to all $s$. There exists a meromorphic function
+$\gamma_v(s, \pi_v, \xi_v, \psi_v)$ such that
+\[Z_v(1 - s, \pi_v(w_1)W_v, \xi_v^{-1}\omega_v^{-1}) = \gamma_v(s, \pi_v, \xi_v,
+\psi_v) Z_v(s, W_v, \xi_v).\]
+
+\textbf{Functional equation for the partial global $L$-function.} Let $\xi$ be a
+Hecke character of $F$. Let $S$ be a finite set of places of $F$ containing all
+the Archimedean ones such that if $v \not\in S$, then $\pi_v$ is spherical and
+$\xi_v$ is nonramified and the additive character $\psi_v$ has conductor
+$\oI_v$. Then
+\[L_S(s, \pi, \xi) = \bigg\{ \prod_{v \in S} \gamma_v(s, \pi_v, \xi_v, \psi_v)
+\bigg\} L_S(1 - s, \hat{\pi}, \xi^{-1})\] where $\hat{\pi}$ is the
+contragradient representation
+
+\textbf{A ``local converse theoem.''} Now let $F$ be a non-Archimedean local
+field. Let $\pi_1$ and $\pi_2$ be irreducible admissible representations of
+$\GL(2, F)$. Suppose that $\pi_1$ and $\pi_2$ have the same central
+quasicharacter $\omega$ and that $\gamma(s, \pi_1, \xi, \psi) = \gamma(s, \pi_2,
+\xi, \psi)$ for all characters $\xi$ of $F^\times$. Then $\pi_1 \cong \pi_2$.
+
+\end{document}

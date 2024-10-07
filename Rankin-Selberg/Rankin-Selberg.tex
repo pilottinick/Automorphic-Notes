@@ -1,0 +1,146 @@
+\documentclass[12pt, letterpaper, twoside]
+{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz-cd}
+
+\title{Rankin-Selberg Method}
+\author{Nick Pilotti}
+
+% Categories
+\newcommand{\ra}{\rightarrow}
+\newcommand{\xra}{\xrightarrow} % labeled arrow
+\newcommand{\Id}{{\text{Id}}} % the identity
+
+% Sets
+\newcommand{\sub}{{\; \subseteq \;}} % subset relation
+\newcommand{\super}{{\; \supseteq \;}} % superset relation
+\newcommand{\pow}{{\mathcal{P}}} % power set
+
+% Combinatorics
+\def\multiset#1#2{\ensuremath{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}}
+
+% Number systems
+\newcommand{\N}{{\mathbb N}} % natural numbers
+\newcommand{\Z}{{\mathbb Z}} % integers
+\newcommand{\Q}{{\mathbb Q}} % rationals
+\newcommand{\R}{{\mathbb R}} % reals
+\newcommand{\C}{{\mathbb C}} % complex numbers
+\newcommand{\F}{{\mathbb F}} % a finite field
+
+% Topology
+\newcommand{\Bd}{\text{Bd}} % boundary
+\newcommand{\Int}{\text{Int}} % interior
+
+% Algebraic Topology
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} % concatenation
+
+% Geometry
+\newcommand{\Proj}{\mathbb{P}} % projective space
+
+% Metric Spaces
+\newcommand{\D}{\mathbb{D}} % unit disk
+\newcommand{\B}{\mathbb{B}} % unit ball
+
+% Measure Theory
+\newcommand{\meas}{\mathcal{M}} % measurable sets
+\newcommand{\borel}{\mathcal{B}} % borel sets
+
+% Analysis
+\newcommand{\dd}[1]{\mathrm{d}#1} % differential
+\newcommand{\del}{\partial} % partial derivative
+
+% Complex Analysis
+\newcommand{\res}{\text{res}} % residue
+
+% General Algebra
+\newcommand{\Ker}{{\text{Ker}}} % kernel
+\newcommand{\Coker}{{\text{Coker}}} % cokernel
+\newcommand{\coker}{{\text{coker}}} % cokernel
+\newcommand{\Img}{{\text{Im}}} % image
+\newcommand{\img}{{\text{im}}} % image
+\newcommand{\Hom}{\text{Hom}} % the hom functor
+\newcommand{\End}{{\text{End}}} % endomorphisms
+\newcommand{\Aut}{{\text{Aut}}} % automorphisms
+
+% Group Theory
+\newcommand{\Orb}{\text{Orb}} % orbit
+\newcommand{\Stab}{{\text{Stab}}} % stabilizer
+\newcommand{\nor}{{\trianglelefteq} \; } % normal subgroup
+\newcommand{\Syl}{{\text{Syl}}} % sylow subgroups
+
+% Specific groups
+\newcommand{\Sym}{{\text{Sym}}} % symmetric group
+\newcommand{\GL}{{\text{GL}}} % general linear group
+\newcommand{\PGL}{{\text{PGL}}} % projective general linear group
+\newcommand{\SL}{{\text{SL}}} % special linear group
+\newcommand{\PSL}{{\text{PSL}}} % projective special linear group
+
+% Rings
+\newcommand{\cha}{\text{char}} % characteristic
+\newcommand{\aI}{{\mathfrak{a}}} % an ideal
+\newcommand{\bI}{{\mathfrak{b}}} % an ideal
+\newcommand{\cI}{{\mathfrak{c}}} % an ideal
+\newcommand{\pI}{{\mathfrak{p}}} % a prime ideal
+\newcommand{\qI}{{\mathfrak{q}}} % a prime ideal
+\newcommand{\mI}{{\mathfrak{m}}} % a maximal ideal
+\newcommand{\nil}{\mathfrak{N}} % nilradical
+\newcommand{\jac}{\mathfrak{R}} % Jacobson radical
+
+% Polynomials
+\newcommand{\cont}{\text{cont}} % content (of a polynomial)
+
+% Modules
+\newcommand{\Ann}{{\text{Ann}}} % annihilator
+
+% Fields and Galois Theory
+\newcommand{\Irr}{{\text{Irr}}} % irreducible polynomial
+
+% Algebraic Number Theory
+\newcommand{\disc}{{\text{disc}}} % discriminant
+
+% Algebraic Geometry
+\newcommand{\Spec}{\text{Spec}} % prime spectrum of a ring
+
+% misc
+\newcommand{\ol}{\overline}
+\begin{document}
+
+\maketitle
+
+Let $f(z), g(z)$ be modular forms and let $A(n), B(n)$ be their Fourier
+coeficients. Define the Eisenstein series for $SL(2, \Z)$ by
+\[E(z, s) = \pi^{-s} \Gamma(s) \zeta(2s) \sum_{\ol{\Gamma_\infty}
+\backslash \ol{\Gamma(1)}} \img (\gamma(z))^s\] Also, define
+\[\Lambda(s) = 4^{-s-k+1}\pi^{-2s-k+1}\Gamma(s)\Gamma(s + k - 1)\zeta(2s) \sum_{n = 1}^\infty
+A(n)B(n)n^{-s-k+1}\] We show (*)
+\[\Lambda(s) = \int_{\Gamma(1) \backslash \mathcal{H}} f(z) \ol{g}(z) E(z, s)
+y^k \; \frac{\dd x \; \dd y}{y^2}\] First note that for $\gamma =
+\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \Gamma(1)$ we have
+\[f(\gamma(z))g(\gamma(z))\img(\gamma(z))^k = (cz + d)^k(c\ol{z} + d)^k f(z)
+g(z) \frac{y^k}{|cz + d|^{2k}} = f(z)g(z)y^k\] hence $f(z) \ol{g}(z) y^k$ is
+invariant under fractional linear transformations. Also, $E(z, s)$ is
+automorphic in $z$. Finally, it is easy to check that the differential $\frac{\dd x
+\; \dd y}{y^2}$ is invariant under linear fractional transformations by checking
+it for the generators $S$ and $T$ of $\Gamma(1)$. Hence, the integral is
+well-defined. 
+
+The right hand side of $(*)$ is equal to
+\[\pi^{-s}\Gamma(s)\zeta(2s) \sum_{\gamma \in \ol{\Gamma_\infty} \backslash
+\ol{\Gamma(1)}} \int_{\ol{\Gamma(1)} \backslash \mathcal{H}} f(\gamma(z))\ol{g}(\gamma(z))
+\img(\gamma(z))^{s + k} \; \frac{\dd x \; \dd y}{y^2}\]
+\[= \pi^{-s}\Gamma(s) \zeta(2s) \int_{\Gamma_\infty \backslash \mathcal{H}}
+f(z)\ol{g}(z)y^{s + k} \; \frac{\dd x \; \dd y}{y^2}\]
+Now,
+\[\int_{\Gamma_\infty \backslash \mathcal{H}} f(z) \ol{g}(z) y^{s + k} \; \frac{\dd x \; \dd y}{y^2}\]
+\[= \sum_{n = 1}^\infty \sum_{m = 1}^\infty A(n)\ol{B}(m) \int_{\Gamma_\infty \backslash \mathcal{H}} e^{2\pi i (n - m) x} e^{-2 \pi (n + m)y} y^{s + k} \; \frac{\dd x \; \dd y}{y^2}\]
+\[= \sum_{n = 1}^\infty \sum_{m = 1}^\infty A(n)\ol{B}(m) \int_0^\infty \int_0^1 e^{2\pi i (n - m)x}e^{-2\pi(n + m)y} y^{s + k - 1} \; \dd x \; \frac{\dd y}{y}\]
+\[= \sum_{n = 1}^\infty A(n)\ol{B}(n) \int_0^\infty e^{-4\pi n y}y^{s + k - 1} \frac{\dd y}{y}\]
+Making the substitution $y = \frac{t}{4\pi n}$ this is
+\[= (4\pi)^{-s - k + 1} \Gamma(s+k-1) \sum_{n = 1}^\infty A(n)\ol{B}(n) n^{-s-k+1}\]
+Finally, $B(n) = \ol{B}(n)$ because the $B(n)$ are eigenvalues of the Hecke operators, which are self adjoint. This proves $(*)$.
+\end{document}

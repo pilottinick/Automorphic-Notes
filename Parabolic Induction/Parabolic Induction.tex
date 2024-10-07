@@ -1,0 +1,483 @@
+\documentclass[12pt, letterpaper, twoside]
+{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz-cd}
+
+\title{Parabolic Induction}
+\author{Nick Pilotti}
+
+% Categories
+\newcommand{\ra}{\rightarrow}
+\newcommand{\xra}{\xrightarrow} % labeled arrow
+\newcommand{\Id}{{\text{Id}}} % the identity
+
+% Sets
+\newcommand{\sub}{{\; \subseteq \;}} % subset relation
+\newcommand{\super}{{\; \supseteq \;}} % superset relation
+\newcommand{\pow}{{\mathcal{P}}} % power set
+
+% Combinatorics
+\def\multiset#1#2{\ensuremath{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}}
+
+% Number systems
+\newcommand{\N}{{\mathbb N}} % natural numbers
+\newcommand{\Z}{{\mathbb Z}} % integers
+\newcommand{\Q}{{\mathbb Q}} % rationals
+\newcommand{\R}{{\mathbb R}} % reals
+\newcommand{\C}{{\mathbb C}} % complex numbers
+\newcommand{\F}{{\mathbb F}} % a finite field
+
+% Topology
+\newcommand{\Bd}{\text{Bd}} % boundary
+\newcommand{\Int}{\text{Int}} % interior
+
+% Algebraic Topology
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} % concatenation
+
+% Geometry
+\newcommand{\Proj}{\mathbb{P}} % projective space
+
+% Metric Spaces
+\newcommand{\D}{\mathbb{D}} % unit disk
+\newcommand{\B}{\mathbb{B}} % unit ball
+
+% Measure Theory
+\newcommand{\meas}{\mathcal{M}} % measurable sets
+\newcommand{\borel}{\mathcal{B}} % borel sets
+
+% Analysis
+\newcommand{\dd}[1]{\mathrm{d}#1} % differential
+\newcommand{\del}{\partial} % partial derivative
+\newcommand{\supp}{\text{supp} \:} % support of a function
+\newcommand{\BV}{\text{BV}} % bounded variation
+
+% Complex Analysis
+\newcommand{\res}{\text{res}} % residue
+
+% Functional Analysis
+\newcommand{\Xcal}{\mathcal{X}} % normed vector space
+\newcommand{\Ycal}{\mathcal{Y}} % normed vector space
+\newcommand{\Hcal}{\mathcal{H}} % Hilbert space
+
+% General Algebra
+\newcommand{\Ker}{{\text{Ker}}} % kernel
+\newcommand{\Coker}{{\text{Coker}}} % cokernel
+\newcommand{\coker}{{\text{coker}}} % cokernel
+\newcommand{\Img}{{\text{Im}}} % image
+\newcommand{\img}{{\text{im}}} % image
+\newcommand{\Hom}{\text{Hom}} % the hom functor
+\newcommand{\End}{{\text{End}}} % endomorphisms
+\newcommand{\Aut}{{\text{Aut}}} % automorphisms
+
+% Group Theory
+\newcommand{\Orb}{\text{Orb}} % orbit
+\newcommand{\Stab}{{\text{Stab}}} % stabilizer
+\newcommand{\nor}{{\trianglelefteq} \; } % normal subgroup
+\newcommand{\Cent}{\text{Cent}} % center
+\newcommand{\Syl}{{\text{Syl}}} % sylow subgroups
+
+% Representation theory
+\newcommand{\Ind}{\text{Ind}} % induced representation
+\newcommand{\Res}{\text{Res}} % restriction
+
+% Specific groups
+\newcommand{\Sym}{{\text{Sym}}} % symmetric group
+\newcommand{\GL}{{\text{GL}}} % general linear group
+\newcommand{\PGL}{{\text{PGL}}} % projective general linear group
+\newcommand{\SL}{{\text{SL}}} % special linear group
+\newcommand{\PSL}{{\text{PSL}}} % projective special linear group
+\newcommand{\OR}{\text{O}} % orthogonal group
+\newcommand{\SO}{\text{SO}} % special orthogonal group
+\newcommand{\UN}{\text{U}} % unitary group
+\newcommand{\SU}{\text{SU}} % special unitary group
+
+% Rings
+\newcommand{\cha}{\text{char}} % characteristic
+\newcommand{\aI}{{\mathfrak{a}}} % an ideal
+\newcommand{\bI}{{\mathfrak{b}}} % an ideal
+\newcommand{\cI}{{\mathfrak{c}}} % an ideal
+\newcommand{\sI}{{\mathfrak{s}}} % an ideal
+\newcommand{\nI}{\mathfrak{n}} % an ideal
+\newcommand{\pI}{{\mathfrak{p}}} % a prime ideal
+\newcommand{\qI}{{\mathfrak{q}}} % a prime ideal
+\newcommand{\mI}{{\mathfrak{m}}} % a maximal ideal
+\newcommand{\nil}{\mathfrak{N}} % nilradical
+\newcommand{\jac}{\mathfrak{R}} % Jacobson radical
+\newcommand{\rad}{\text{rad}} % radical
+
+% Lie Algebras
+\newcommand{\gI}{\mathfrak{g}} % a Lie algebra
+\newcommand{\hI}{\mathfrak{h}} % a Lie algebra
+\newcommand{\Gl}{\mathfrak{gl}} % general linear
+\newcommand{\Sl}{\mathfrak{sl}} % special linear
+\newcommand{\Or}{\mathfrak{o}} % orthgonal
+\newcommand{\So}{\mathfrak{so}} % special orthogonal
+\newcommand{\Un}{\mathfrak{u}} % unitary
+\newcommand{\Su}{\mathfrak{su}} % special unitary
+\newcommand{\ad}{\text{ad}} % adjoint
+
+% Polynomials
+\newcommand{\cont}{\text{cont}} % content (of a polynomial)
+
+% Modules
+\newcommand{\Ann}{{\text{Ann}}} % annihilator
+
+% Linear Algebra
+\newcommand{\Mat}{{\text{Mat}}} % matrices
+\newcommand{\Tr}{{\text{Tr}}} % trace
+\newcommand{\diag}{\text{diag}} % diagonal matrix
+\newcommand{\Span}{\text{span}} % span
+
+% Fields and Galois Theory
+\newcommand{\K}{\mathbb{K}} % a field
+\newcommand{\Irr}{{\text{Irr}}} % irreducible polynomial
+
+% Algebraic Number Theory
+\newcommand{\disc}{{\text{disc}}} % discriminant
+
+% Algebraic Geometry
+\newcommand{\Spec}{\text{Spec}} % prime spectrum of a ring
+
+% misc
+\newcommand{\ol}{\overline}
+\begin{document}
+
+\maketitle
+
+We generalize the construction of representations in part $2$ and part $4$ of
+Bump, and recognize them both as cases of parabolic induction. 
+
+There are analogies between the Archimedean representation theory and the
+non-Archimedean representation theory in the study of automorphic
+representations. The Archimedean theory studies representations of $G_\infty =:
+\GL(2, \R)$ or $G_\infty^+ =: \GL(2, \R)^+$ and the non-Archimedean theory
+studies representations of $G_p =: \GL(2, \Q_p)$ for a prime $p$. Let $k$ be the
+local field over which $G$ is defined.
+
+\textbf{Maximal compact subgroup.} There exist \textit{maximal compact
+subgroups} $K_\infty := \OR(2) \leq G_\infty$, $K_\infty^+ := \SO(2) \leq
+G_\infty^+$ and $K_p := \GL(2, \Z_p) \leq G_p$. The maximal compact subgroup of
+$G$ will be denoted by $K$.
+
+\textbf{Group decompositions.} Let $B \leq G$ denote the Borel subgroup of upper
+triangular matrices. The \textit{Iwasawa decomposition} is expressed by the
+equation
+\[G = BK.\] Let $N \leq G$ denote the subgroup of upper triangular unipotent
+matrices and $T \leq G$ the subgroup of diagonal matrices. Note that
+\[B = TN\] and this product is semidirect, i.e., $T$ is in the normalizer of $N$
+and $T \cap N = 1$. $T$ is called the \textit{Levi subgroup} and is also an
+example of a \textit{split tours}. $N$ is called the \textit{unipotent radical}.
+
+Let $W = \bigg\{ \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \begin{pmatrix} 0
+& 1 \\ -1 & 0 \end{pmatrix}\bigg\}$. $W$ is called the Weyl group (though it is
+not a subgroup of $G$, it is in the quotient of $G$ by scalars). The
+\textit{Bruhat decomposition} is expressed by the equation
+\[G = \cup_{w \in W} BwB\] and this union is disjoint.
+
+\textbf{Topological groups and Haar measure.} $G$ is always a Hausdorff locally
+compact topological group. $\GL_\infty$ and $\GL_\infty^+$ are \textit{Lie
+groups}. $\GL_p$ is \textit{totally disconnected}, i.e., every neighborhood of
+the identity contains an open compact subgroup. 
+
+There exist left and right-invariant measures on $G$, called the left and right
+\textit{Haar measures}, and denoted by $\dd_Lg$ and $\dd_Rg$ respectively. They
+are unique up to scalar multiple. For a Hausdorff locally compact group $H$, the
+\textit{modular quasicharacter} $\delta_H$ is defined by $\dd_R h = \delta_H
+(h)\dd_L h$. We say that $H$ is \textit{unimodular} if $\delta_H = 1$, i.e., the
+left and right Haar measures coincide.
+
+In any case, $G$ and $K$ are unimodular. We choose $\dd g$ so that $\int_K \;
+\dd g = 1$. The modular quasicharacter of $B$ is $\delta_B
+\begin{pmatrix} a & c \\ 0 & b \end{pmatrix} = |a/b|$. 
+
+\textbf{Smooth functions.} Let $H$ be a subgroup of $G$. If $G$ is Archimedean,
+we say that a complex-valued function on $H$ is \textit{smooth} if it is smooth
+as a map between manifolds. If $G$ is non-Archimedean, we say that a
+complex-valued function on $H$ is \textit{smooth} if it is locally constant. Let
+$C^\infty(H)$ denote the set of smooth complex-valued maps on $H$. Let
+$C_c^\infty(H)$ denote the set of smooth complex-valued maps on $H$ with compact
+support.
+
+\textbf{Representations.} Let $(\pi, V)$ be a representation of $G$. If $G$ is
+Archimedean, we will study $\pi$ when it is a (not necessary unitary) Hilbert
+space representation or when it is a $(\gI, K)$\textit{-module}, where $\gI$ is
+the Lie algebra of $G$ (c.f. Bump $2.4$). Equivalence of $(\gI, K)$-modules is
+called infinitesimal equivalence. If $G$ is non-Archimedean, we will study $\pi$
+when it is \textit{smooth}. That is, for each $v \in V$, the stabilizer of $v$
+in $G$ is open.
+
+\textbf{Direct sum decomposition and admissible representations.} Let $(\pi, V)$
+be representation of $G$ which is a Hilbert space representation if $G$ is
+Archimedean and smooth if $G$ is non-Archimedean. Let $\hat{K}_\infty$ (resp.
+$\hat{K}_\infty^+$) be the set of equivalence classes of finite-dimensional
+unitarizable irreducible representations of $K_\infty$ (resp. $K_\infty^+$). Let
+$\hat{K}_p$ be the set of equivalence classes of finite-dimensional irreducible
+representations of $K_p$ whose kernel is open (hence of finite index). Denote
+this object generally by $\hat{K}$. If $\rho \in \hat{K}$, let $V(\rho)$ be the
+sum of all $K$-invariant subspaces of $V$ that are isomorphic as $K$-modules to
+$\rho$. Then,
+\[V = \oplus_{\rho \in \hat{K}} V(\rho)\] If $G$ is Archimedean, this is a
+Hilbert space direct sum of $K$-modules. If $G$ is non-Archimedean, this is an
+algebraic direct sum of $K$-modules.
+
+We say that $\pi$ is \textit{admissible} if for each $\rho \in \hat{K}$,
+$V(\rho)$ is finite dimensional. If $G$ is Archimedean, an irreducible unitary
+representation is always admissible. If $G$ is non-Archimedean, then $\pi$ is
+admissible if and only if for any open subgroup $U \leq G$, the space $V^U$ of
+vectors stabilized by $U$ is finite dimensional.
+
+\textbf{Multiplicative characters.} A \textit{quasicharacter} of a group $H$ is
+a homomorphism $\chi$ from $H$ to the multiplicative group $\C^\times$ of
+complex numbers. We say that $\chi$ is a \textit{character} (or \textit{unitary
+character}) if $|\chi| = 1$. 
+
+Tate's thesis (section $2.3$) provides a useful description of the
+quasicharacters on $k^\times$. Let $u$ denote the kernel of the absolute value
+map $| \cdot | : k \ra \R_{\geq 0}$ (so if $F = \R$, $U = \{\pm 1\}$ and if $F =
+\Q_p$, $U = \{ x \in \Z_p : p \nmid x$\}). We call a quasicharacter
+\textit{unramified} if it is trivial on $u$. The unramified quasicharacters are
+the maps of the form $c(\alpha) = |\alpha|^s$, where $s$ is any complex number,
+$s$ is determined by $c$ if $k$ is Archimedean, and $s$ is determined mod $2\pi
+i$. The quasicharacters are maps of the form $c(\alpha) =
+\tilde{c}(\tilde{\alpha})|\alpha|^s$, where $\tilde{c}$ is any character of $u$,
+$\tilde{c}$ is uniquely determined by $c$, and $s$ is determined as in the case
+of unramified quasicharacters. In particular, the quasicharacters on $\R$ are
+maps of the form $c(\alpha) = \text{sgn}(\alpha)^\epsilon|\alpha|^s$, where
+$\epsilon$ is an equivalence class of $\Z$ modulo $2$.
+
+If $\chi_1$ and $\chi_2$ are quasicharacters of $k$, then
+\[\chi \begin{pmatrix} a & c \\ 0 & b \end{pmatrix} = \chi_1(a)\chi_2(c)\]
+defines a quasicharacter of $B$.
+
+\textbf{Induced Representation for a quasicharacter of B.} Let $\chi$ be a
+quasicharacter of $B$. Let $V^\infty$ be the set of $f \in C^\infty(G)$ such
+that
+\[f(bg) = \delta_G(b)^{-1/2}\delta_B(b)^{1/2}\chi(b)f(g)\] for all $b \in B$ and
+$g \in G$. By the Iwasawa decomposition, functions $f \in V^\infty$ are uniquely
+determined by their restriction to $K$. $G$ acts on $V^\infty$ by right
+translation, i.e.,
+\[(\pi(g)f)(x) = f(xg)\]
+
+If $G$ is Archimedean, we define a Hermitian innner product on $V^\infty$ by
+\[\langle f_1, f_2 \rangle = \int_K f_1(k)\ol{f_2(k_\theta)} \; \dd k\] Let $V$
+be the Hilbert space completion of $V^\infty$ in $C^\infty(G)$. The action of
+$G$ on $V^\infty$ can be extended to $V$, and $V^\infty$ is the space of smooth
+vectors for $V$ (c.f. Bump $2.4$).
+
+If $G$ is non-Archimedean, let $V = V^\infty$. Let $V_c = V \cap C_c^\infty(G)$
+be the subspace of $V$ which consists of compactly supported smooth functions.
+$V_c$ is a subrepresentation of $V$.
+
+$V$ is called the \textit{induced representation} of $\chi$ in $G$, also denoted
+$\Ind_B^G \chi$. If $G$ is non-Archimedean, we call $V_c$ the \textit{compact
+induced representation}.
+
+\textbf{Classification of $(\gI, K)$-modules for $\GL(2, \R)^+$.} For the
+following, $G = \GL_\infty^+$. Note that
+\[\kappa_\theta = \begin{pmatrix} \cos(\theta) & \sin(\theta) \\ -\sin(\theta) &
+\cos(\theta) \end{pmatrix}, \; \theta \in [0, 2\pi)\] parameterizes elements of
+$K$. Since $K \cong \R/\Z$, the irreducible unitary representations of $K$ are
+one dimensional and are parameterized by integers. They are the characters
+$\sigma_k(\kappa_\theta) = e^{ik\theta}$ with $k \in \Z$. We will denote the
+isotypic component $V(\sigma_k)$ as simply $V(k)$. Thus,
+\[V = \oplus_{k \in \Z} V(k)\] Each $V(k)$ is one dimensional. Let $\Sigma$ be
+the set of all integers such that $V(k) \neq 0$. We call $\Sigma$ the
+\textit{set of $K$-types of $V$}. If $V$ is an irreducible admissible $(\gI,
+K)$-module, $\Sigma$ is either all even or all odd. We say the \textit{parity}
+of $V$ is even or odd accordingly.
+
+Let $s_1$ and $s_2$ be complex numbers and $\epsilon$ a equivalence class of
+$\Z$ modulo $2$. Let $\chi_1$ and $\chi_2$ be the quasicharacters of $\R^\times$
+given by $\chi_1(\alpha) = \text{sgn}(\alpha)^\epsilon|\alpha|^{s_1}$ and
+$\chi_2(\alpha) = |\alpha|^{s_2}$. Let $\chi$ be the quasicharacter on $B$ given
+by $\chi_1$ and $\chi_2$. Let $V$ be the induced representation of $\chi$ in
+$G$. $V^\infty$ consists of $f \in C^\infty(G)$ such that
+\[f \bigg( \begin{pmatrix} a & c \\ 0 & b \end{pmatrix} g\bigg) = a^{s_1 +
+1/2}b^{s_2 - 1/2}f(g), \; g \in G, \; a, c > 0\] and
+\[f \bigg( \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} g\bigg) =
+(-1)^\epsilon f(g), \; g \in G.\]
+
+The restriction of $f$ to $K$ can be any smooth function, subject to the
+condition
+\[f(\kappa_{\theta + \pi}) = (-1)^\epsilon f(\kappa_\theta)\] for all $\theta$.
+
+Now let,
+\[R = \frac{1}{2} \begin{pmatrix} 1 & i \\ i & -1 \end{pmatrix}, \; L =
+\frac{1}{2} \begin{pmatrix} 1 & -i \\ -i & -1 \end{pmatrix}, \; H = -i
+\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}, \; Z = \begin{pmatrix} 1 & 0 \\ 0
+& 1 \end{pmatrix} \] be elements of the Lie algebra $\gI_\C = \Gl(n, \C)$, which
+is the complexification of $\gI$. Define $\Delta$ by
+\[-4\Delta = H^2 + 2RL + 2LR.\] If $\ell \equiv \epsilon$ mod $2$, there exists
+a unique element $f_\ell$ of $V$ whose restriction satisfies
+\[f_\ell(\kappa_\theta) = e^{i\ell \theta}.\] We have
+\[H f_\ell = \ell f_\ell, R f_\ell = (s + 1/2) f_{\ell + 2}, \ Lf_{\ell} = (s -
+1/2) f_{\ell - 2}\] and
+\[\Delta f_\ell = \lambda f_\ell, \; Z f_\ell = \mu f_\ell\] where
+\[\lambda = s(1 - s), \; \mu = s_1 + s_2, \; s = \frac{1}{2}(s_1 - s_2 + 1)\]
+
+Let $V_{\text{fin}}$ be space of $K$-finite vectors of $V$ (c.f. Bump $2.4$).
+Then $\Delta$ and $Z$ act as scalars on $V_{\text{fin}}$, with eigenvalues
+$\lambda$ and $\mu$, respectively. The set of $K$-types of $V_{\text{fin}}$
+consists of all integers congruent to $\epsilon$ modulo $2$. 
+
+$(i)$ Suppose that $s$ is not of the form $\frac{k}{2}$, where $k$ is an integer
+congruent to $\epsilon$ mod $2$. Then $V_{\text{fin}}$ is irreducible. 
+
+$(ii)$ Suppose that $s \geq \frac{1}{2}$ and that $s = \frac{k}{2}$, where $k
+\geq 1$ is an integer congruent to $\epsilon$ module $2$. Then $V_{\text{fin}}$
+has two irreducible invariant subspace $V_{\text{fin}}^+$ and
+$V_{\text{fin}}^-$. The set of $K$-types of $V_{\text{fin}}^+$ is
+\[\Sigma^+(k) = \{ \ell \in \Z | \ell \equiv k \text{ mod } 2, \ell \geq k\}\]
+and the set of $K$-types of $V_{\text{fin}}^-$ is
+\[\Sigma^-(k) = \{ \ell \in \Z | \ell \equiv k \text{ mod } 2, \ell \leq -k\}\]
+The quotient $V_{\text{fin}}^0 = V_{\text{fin}} / (V_{\text{fin}}^+ \oplus
+V_{\text{fin}}^-)$ is irreducible, unless $k = 1$, in which case it is zero. Its
+set of $K$-types is
+\[\Sigma^0(k) = \{ \ell \in \Z | \ell \equiv k \text{ mod } 2, -k < \ell < k\}\]
+
+$(iii)$ Suppose that $s \leq \frac{1}{2}$ and that $s = 1 - \frac{k}{2}$, where
+$k \geq 1$ is an integer congruent to $\epsilon$ mod $2$. Then $V_{\text{fin}}$
+has an invariant subspace $V_\text{fin}^0$ whose set of $K$-types is
+$\Sigma^0(k)$. Here $V_{\text{fin}}^0$ is irreducible, unless $k = 1$, in which
+case it is zero. The quotient $V_{\text{fin}}/V_{\text{fin}}^0$ decomposes into
+two irreducible invariant subspaces $V_{\text{fin}}^+$ and $V_{\text{fin}}^-$.
+The set of $K$-types of $V_{\text{fin}}^\pm$ is $\Sigma^{\pm}(k)$.
+
+There exists exactly one isomorphism class of $(\gI, K)$-module with each given
+$\Sigma$. Every irreducible admissible $(\gI, K)$-module is realized in one of
+the above cases.
+
+Let $\mathcal{P}_\mu(\lambda, \epsilon)$ denote the infinitesimal equivalence
+class of irreducible admissible $(\gI, K)$-modules of parity $\epsilon$ on which
+$\Delta$ and $Z$ have eigenvalues values $\lambda$ and $\mu$, respectively. If
+$\mu = 0$, we denote this infinitesimal equivalence class of representations by
+$\mathcal{P}(\lambda, \epsilon)$. These representations are called
+\textit{principal series representations}, and are exactly those representations
+which are equivalent to the irreducible admissible representation in case $(i)$.
+We call a representations which is equivalent to one of the two infinite
+dimensional irreducible admissible representations in case $(ii)$ or $(iii)$ a
+reprsentation of the \textit{discrete series}. They are denoted by
+$\mathcal{D}^\pm(k)$.
+
+
+
+\textbf{Classification of $(\gI, K)$-modules for $\GL(2, \R)$.} For the
+following, $G = \GL_\infty$. Let $s_1, s_2, \epsilon,$ and $\chi$ be as in the
+previous section. $\chi$ is a quasicharacter on $B^+$, the Borel subgroup of
+$\GL(2, \R)^+$. Let $\epsilon_1, \epsilon_2$ be congruence classes of $\Z$ mod
+$2$ such that $\epsilon_1 + \epsilon_2 \equiv \epsilon$ mod $2$. There are two
+possible choices for $\epsilon_1$ and $\epsilon_2$. Let $\chi_i : \R$ be the
+quasicharacters on $\R^\times$ given by $\chi_i(y) =
+\text{sgn}(y)^{\epsilon_i}|y|^{s_i}$ and extend $\chi$ to all of $B$ by $\chi
+\begin{pmatrix} a & c \\ 0 & b\end{pmatrix} = \chi_1(a)\chi_2(b)$.
+
+Let $V$ be the induced representation of $\chi$ in $G$, $V^\infty$ the space of
+smooth vectors, and $V_{\text{fin}}$ the space of $K$-finite vectors. The
+restriction of $G$ to $G^+$ is the same representation as in the previous
+paragraph (depending only on $s_1, s_2, \epsilon$).
+
+This construction is used to show that every irreducible admissible $(\gI,
+K)$-module may be realized as the space of $K$-finite vectors is an admissible
+representation of $G = \GL(2, \R)$ on a Hilbert space.
+
+$(i)$ The finite-dimensional representations are obtained by tensoring the
+symmetric powers of the standard representation with the one-dimensional
+representation of the form $\chi \circ \det$, where $\chi$ is a character of
+$\R^\times$.
+
+$(ii)$ If $\chi_1$ and $\chi_2$ are quasicharacters of $\R^\times$ such that
+$\chi_1\chi_2^{-1}$ is not a quasicharacter of the form $y \mapsto
+\text{sgn}(y)^\epsilon |y|^{k - 1}$, where $\epsilon$ is an equivalence class of
+$\Z$ mod $2$ and $k$ is an integer of the same parity of $\epsilon$, then
+$V_{\text{fin}}$ is irreducible. 
+
+$(iii)$ If the hypothesis of case $(ii)$ does not hold, then
+$V_{\text{fin}}/V_{\text{fin}}^0 = \mathcal{D}_\mu^+(k) \oplus
+\mathcal{D}_\mu^-(k)$. The $\mathcal{D}_\mu^{\pm}(k)$ are irreducible.
+
+Every irreducible admissible $(\gI, K)$-module is isomorphic to one of the above
+cases.
+
+\textbf{The Jacquet module, Jacquet functor, and supercuspidal representations.}
+For the following, $G$ is non-Archimedean. Let $(\pi, V)$ be a smooth
+representation $B$. Define $V_N$ to be the vector subspace of $V$ generated by
+elements of the form $\pi(u)v - v$ for $u \in N$, $v \in V$. The quotient $J(V)
+= V/V_N$ is a smooth representation of $T$ called the \textit{Jacquet module} of
+$V$. This defines a functor, called the \textit{Jacquet functor}, from the
+category of smooth representations of $B$ to the category of smooth
+representations of $T$. This functor is exact. An irreducible admissible
+representation of $G$ is called \textit{supercuspidal} if $J(V) = 0$.
+
+\textbf{Classification of irreducible admissible non-supercuspidal
+representation of $\GL_p$.}  For the following, $G$ is non-Archimedean. Let
+$\chi_1$ and $\chi_2$ be quasicharacters of $F^\times$. Fix two characters
+$\xi_1$ and $\xi_2$ of $u$ such that $\chi_i(y) = |y|^{s_i}\xi(y) \; (i = 1,
+2)$. Let $\chi$ be the quasicharacter on $B$ given by $\chi_1$ and $\chi_2$. Let
+$\mathcal{B}(\chi_1, \chi_2)$ be the induced representation of $\chi$ in $G$. 
+
+$(i)$ Suppose we don't have $(\chi_1\chi_2^{-1})(y) = |y|^{-1}$ for all $y \in
+F^\times$ or $(\chi_1\chi_2^{-1})(y) = |y|$ for all $y \in F^\times$. Then
+$\mathcal{B}(\chi_1, \chi_2)$ is irreducible and $\mathcal{B}(\chi_1, \chi_2)
+\cong \mathcal{B}(\chi_2, \chi_1)$. If $\mu_1$ and $\mu_2$ are quasicharacters
+of $F^\times$, we have $\mathcal{B}(\chi_1, \chi_2) = \mathcal{B}(\mu_1, \mu_2)$
+if and only if either $\chi_1 = \mu_1$ and $\chi_2 = \mu_2$ or $\chi_1 = \mu_2$
+and $\chi_2 = \mu_1$.
+
+$(ii)$ If $(\chi_1\chi_2^{-1})(y) = |y|^{-1}$ for all $y \in F$, then
+$\mathcal{B}(\chi_1, \chi_2)$ has a one dimensional invariant subspace and the
+quotient representation is irreducible. 
+
+$(iii)$ If $(\chi_1\chi_2^{-1})(y) = |y|$, then $\mathcal{B}(\chi_1, \chi_2)$
+has an irreducible invariant subspace of codimension one.
+
+Each admissible irreducible non-supercuspidal representation of $G$ is
+isomorphic to an irreducible representation covered by one of the above cases.
+
+An representation which is isomorphic to one of the irreducible representations
+covered by case $(i)$ is called a \textit{principal series represntation}. A
+representaiton which is isomorphic to one of the infinite dimensional
+irreducible representations covered by cases $(ii)$ or $(iii)$ is called a
+\textit{special representation} or \textit{Steinberg representation}. Thus each
+admissible irreducible non-supercuspidal representation of $G$ is either a
+principal series representation, a special representation, or one dimensional.
+
+\textbf{Uniqueness of the K-fixed vector.} Suppose that $G$ is Archimedean.
+Assume that $\pi$ is an irreducible unitary representation of $G$ and for $\phi
+\in C_c^\infty(K \backslash G/K)$, the operator $\pi(\phi)$ is a compact
+operator on $V^{K}$. Then the dimension of $V^{K}$ is at most one.
+
+Suppose that $G$ is non-Archimedean. Assume that $\pi$ is an irreducible
+admissible representation of $G_p$. Then $V^K$ is at most one dimensional, and
+the space of linear functionals $L$ on $V$ satisfying
+\[L(\pi(k)v) = L(v), \; k \in K, v \in V\] is at most one dimensional.
+
+TODO: \textbf{Intertwining integrals.}
+
+\textbf{Summary.} In both theories we are dealing with Hausdorff locally compact
+topological groups of matrices. We restrict our attention to those
+representations which are compatible with the topology of the group in a certain
+sense and which are admissible. These groups have a similar structure, in that
+they both contains a maximal compact subgroup $K$ and a Borel subgroup $B$ of
+upper triangular matrices. Representations are obtained by picking two
+multiplicative quasicharacters $\chi_1$ and $\chi_2$ on $F^\times$ and using
+them to define a quasicharacter $\chi$ on $B$. From $\chi$ we induce a
+representation of $G$. The unramified parts of $\chi_1$ and $\chi_2$ determine
+complex numbers $s_1$ and $s_2$, which control important properties of the
+representation. It is also important to consider the case where $\chi_1$ and
+$\chi_2$ are unramified. As long as the function $\chi_1\chi_2^{-1}$ is not of a
+certain form, these representation are irreducible. Representations of this form
+are called the principal series representations. If the representations are
+reducible, they contain in their composition series one or two infinite
+dimensional irreducible representations and a finite dimensional representation.
+The infinite dimensional representations are called discrete series in the
+Archimedean case and special in the non-Archimedean case. All irreducible
+admissible representations, besides the supercuspidal ones, are obtained in this
+way. Intertwining intergrals are used to defined $G$-equivariant maps between
+representations.
+
+\end{document}
