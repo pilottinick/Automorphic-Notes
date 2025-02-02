@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+
+\usepackage{microtype}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{tikz-cd}
+
+\usepackage{setspace}
+
+\onehalfspacing
+
+\title{Similitude Siegel-Weil Formula}
+\author{Nick Pilotti}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+Let $k = \mathbb{Q}$. Let $V$ be a $m$ dimensional quadratic space over $k$, and
+$W$ a $2n$ dimensional symplectic space over $k$. Let $H =
+\text{GO}\left(V\right)$ and let $H_{1} = \text{O}\left(V\right)$ be the kernel
+of the similitude map $\lambda$. If $m$ is even, let $G' =
+\text{GSp}\left(W\right)$. If $m$ is odd, let $G'$ be
+$\widehat{\text{GSp}\left(W\right)}$, a certain the two-fold cover of
+$\text{GSp}\left(W\right)$. For $g \in G'$, let $\lambda\left(g\right)$ be the
+similitude factor of the projection of $g$ to $\text{GSp}\left(W\right)$. Let
+$G$ subgroup of $g \in G'$ such that $\lambda\left(g\right) \in
+\lambda\left(H\right)$. Let $G_1$ be the subgroup of $g \in G$ such that
+$\lambda\left(g\right) = 1$.
+
+Let $\mathbb{W} = V \otimes_{k} W$. $\text{GMp}\left(\mathbb{W}\right)$ is a
+certain extension of $\text{GSp}\left(\mathbb{W}\right)$ by $\mathbb{C}^{1}$,
+called the metaplectic cover of $\text{GSp}\left(\mathbb{W}\right)$. The typical
+element of $\text{GMp}\left(\mathbb{W}\right)$ will be denoted by $\left(g,
+\epsilon\right)$, where $g \in \text{GSp}\left(\mathbb{W}\right)$ and $\epsilon
+\in \mathbb{C}^{1}$. $p$ is the projection from
+$\text{GMp}\left(\mathbb{W}\right)$ to $\text{GSp}\left(\mathbb{W}\right)$.
+There are inclusions 
+%
+\[H \xhookrightarrow{} \text{GSp}\left(\mathbb{W}\right), \; G
+\xhookrightarrow{} \text{GSp}\left(\mathbb{W}\right).\]
+%
+
+These are inclusions are selected so that their preimages in
+$\text{GMp}\left(\mathbb{W}\right)$ are nice. $p^{-1}\left(H\right)$ is trivial
+as an extension of $H$. If $m$ is even, then
+$p^{-1}\left(G\right)$ is trivial as an extension of $G$. If $m$ is odd, then
+$p^{-1}\left(G\right)$ is the metaplectic cover of $\text{GSp}\left(Y\right)$.
+
+Let $\psi$ be a fixed additive character of $k$ and $\omega = \omega_{\psi}$ the
+standard Weil representation of $H_{1}\left(\mathbb{A}\right) \times
+G_{1}\left(\mathbb{A}\right)$ on the Schwartz space
+$S\left(V\left(\mathbb{A}\right)^{n}\right)$. Let 
+%
+\[R = \left\{\left(h, g\right) \in H \times G \; | \; \nu\left(h\right) =
+\nu\left(g\right)\right\}.\]
+%
+There is a representation of $R\left(\mathbb{A}\right)$ on
+$S\left(V\left(\mathbb{A}\right)^{n}\right)$ given by 
+%
+\[\omega\left(h, g\right)\varphi\left(x\right) =
+\left|\nu\left(h\right)\right|^{-\frac{nm}{4}}\left(\omega\left(g_1\right)\varphi\right)\left(h^{-1}x\right).\]
+%
+We call $\omega$ the extended Weil representation.
+
+The theta kernel, defined for $\left(h, g\right) \in R\left(\mathbb{A}\right)$
+by 
+%
+\[\theta\left(h, g; \varphi\right) = \sum_{x \in V\left(k\right)^{n}}^{}
+\omega\left(h, g\right)\varphi\left(x\right)\]
+%
+is left $R\left(k\right)$ invariant. The theta integral is defined (when
+convergent) by 
+%
+\[I\left(g, \varphi\right) = \int_{H_{1}\left(k\right) \backslash
+H_{1}\left(\mathbb{A}\right)}^{} \theta\left(h_1h, g; \varphi\right) \,
+\mathrm{d}h_{1}\]
+%
+where $g \in G\left(\mathbb{A}\right)$, $h \in H\left(\mathbb{A}\right)$ with
+$\lambda\left(h\right) = \lambda\left(g\right)$, and $\varphi \in
+S\left(V\left(\mathbb{A}\right)^{n}\right)$. It does not depend on the choice of
+$h$. A technical procedure is needed to define the theta integral in all cases.
+
+$\lambda_{s}$ is a certain character of Siegel parabolic $P$ in $G$. Let
+$I\left(s\right) = I_{P}^{G}\left(\lambda_{s}\right)$ be the normalized induced
+representation of $G\left(\mathbb{A}\right)$. The Eisenstein series associated
+to a section $\Phi_{s} \in I\left(s\right)$ is defined for
+$\text{Re}\left(s\right) > 1$ by 
+%
+\[E\left(g, s, \Phi_{s}\right) = \sum_{\gamma \in P\left(k\right) \backslash
+G\left(k\right)}^{} \Phi_{s}\left(\gamma g\right),\]
+%
+and the normalized Eisenstein series is 
+%
+\[E^{*}\left(g, s, \Phi_{s}\right) = b_{G}\left(s\right) \cdot E\left(g, s,
+\Phi_{s}\right)\]
+%
+where $b_{G}\left(s\right)$ is a certain function of $s$.
+
+The Siegel-Weil formula says that for a section $\Phi_{s} \in I\left(s\right)$
+with $\Phi_{0} \in \Pi\left(V\right)$ so that $\Phi_{0} =
+\left[\varphi\right]^{~}$ for some $\varphi \in
+S\left(V\left(\mathbb{A}\right)^{n}\right),$ 
+%
+\[E\left(g, 0, \Phi_{s}\right) = 2 I\left(g, \varphi\right).\]
+%
+
+\end{document}

@@ -1,0 +1,185 @@
+\documentclass[12pt]{article}
+
+\usepackage{microtype}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{tikz-cd}
+
+\title{Similitude Groups}
+\author{Nick Pilotti}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Basic Definitions}
+
+Let $F$ be a field. Let $W$ be a $2n$-dimensional nondegenerate symplectic space
+over $F$ with symplectic form $b\left(\cdot, \cdot\right)$. We definite the
+\textbf{symplectic similitude group} of the vector space $W$ to be the set of $g
+\in \text{GL}\left(W\right)$ such that there exists $\lambda \in F^{\times}$
+with $b\left(gx, gy\right) = \lambda b\left(x, y\right)$ for all $x, y \in W$.
+The factor $\lambda$ is uniquely determined by $g$ and is called the
+\textbf{factor of similitude} for $g$. The symplectic similitude group of $W$ is
+denoted by $\text{GSp}\left(W\right)$. Let $s : \text{GSp}\left(W\right)
+\rightarrow F^{\times}$ be the map which takes a linear transformation to its
+factor of similitude. $\text{GSp}\left(W\right)$ is a subgroup of
+$\text{GL}\left(W\right)$ and $s$ is a homomorphism. $\text{Sp}\left(W\right)$
+is a normal subgroup of $\text{GSp}\left(W\right)$, being the kernel of $s$.
+
+There exists a basis for $W$ relative to which $\hat{b}$, the matrix
+representation for $b$, takes the form 
+
+\[\hat{b} = \begin{pmatrix} 0 & I_{n} \\ I_{n} & 0 \end{pmatrix}\]
+
+where $I_{n}$ is the $n \times n$ identity matrix. For $g \in
+\text{GL}\left(W\right)$, let $\hat{g}$ denote the matrix representation of $g$
+relative to the chosen basis for $W$. $g \in \text{GSp}\left(W\right)$ if and
+only if 
+
+\[g^{t} b g = \lambda b.\]
+
+for some $\lambda \in F^{\times}$. Writing $\hat{g} = \begin{pmatrix} A & B \\ C
+& D \end{pmatrix}$ where $A, B, C, D$ are $n \times n$ matrices with entries in
+$F$, the above is equivalent to the relations 
+
+\[A^{t}B = B^{t}A, \, C^{t}D = D^{t}C, \, A^{t}D - B^{t}C = \lambda I_{n}.\]
+
+Henceforth, we identify $\text{GSp}\left(W\right)$ with its realization as a
+matrix group. For $\lambda \in F^{\times}$, the matrix 
+
+
+\[S_{\lambda} := \begin{pmatrix} \lambda I_{n} & 0 \\ 0 & I_{n} \end{pmatrix}\]
+
+is an element of $\text{GSp}\left(W\right)$ with factor of similitude $\lambda$.
+Hence, the map $s$ is surjective and we have a short exact sequence 
+
+\[\begin{tikzcd}
+1 \arrow[r] & \text{Sp}\left(W\right) \arrow[r] & \text{GSp}\left(W\right)
+\arrow[r, "s"] & F^{\times} \arrow[r] & 1.
+\end{tikzcd}\]
+
+Let $Z$ denote the group of scalar matrices. $Z$ is a subgroup of
+$\text{GSp}\left(W\right)$ and is isomorphic to $F^{\times}$. Suppose that $g
+\in \text{GSp}\left(W\right)$ with $s\left(g\right) = \lambda$ and $\mu \in
+F^{\times}$. Observe that $s\left(\mu g\right) = \mu^2 s\left(g\right)$. Now
+consider reduction of $s$ modulo $F^{\times, 2}$. Call the kernel of this map
+$\text{GSp}^2\left(W\right)$. It is the subgroup of $\text{GSp}\left(W\right)$
+which consists of elements with a factor of similitude that is square in
+$F^{\times}$. We have another short exact sequence
+
+
+\[\begin{tikzcd}
+1 \arrow[r] & \text{GSp}^2\left(W\right) \arrow[r] & \text{GSp}\left(W\right)
+\arrow[r, "s"] & F^{\times}/F^{\times, 2} \arrow[r] & 1
+\end{tikzcd}.\]
+
+We have $\text{GSp}^2\left(W\right) = Z \cdot \text{Sp}\left(W\right)$. However,
+if $F$ has characteristic over than $2$ the product is not quite direct. If $g =
+\mu g'$ for some $\mu \in F^{\times}$, then $g = \left(- \mu\right)
+\left(-g'\right)$ and $- \mu \in F^{\times}$, $-g' \in \text{Sp}\left(W\right)$.
+In order to make a direct product when the characteristic is other than $2$, for
+each pair $\left\{ \mu, - \mu\right\}_{\mu \in F^{\times}}$, we arbitrarily
+select of the elements to be ``positive'' and call the other element
+``negative.'' Denote the set of positive elements $Z^{+}$. For instance, if $F$
+is an ordered field, we can let $Z^{+}$ be the set of $\mu > 0$. Let
+$\left\{\lambda_{i}\right\}$ be a set of representatives for $F^{\times} /
+F^{\times, 2}$. Each $g \in \text{GSp}\left(W\right)$ can be represented in the
+form
+
+\[g = \mu s_{\lambda_{i}} g'\]
+
+for some uniquely chosen $\mu \in Z^{+}$, $\lambda_{i}$, and $g' \in
+\text{Sp}\left(W\right)$. In case $Z^{+}$ is a group, we have a direct product
+of groups $\text{GSp}^2\left(W\right) = Z^{+} \cdot \text{Sp}\left(W\right)$.
+Note that $s\left(g\right) = \mu^2 \lambda_{i}$. The set $S :=
+\left\{s_{\lambda_{i}}\right\}$ is an abelian group modulo $Z$ and isomorphic to
+$F^{\times}/F^{\times,2}$. $\text{GSp}\left(W\right)/Z$ is the semidirect
+product $S \cdot \text{Sp}\left(W\right)$. The adjoint action of $S$ on
+$\text{Sp}\left(W\right)$ is
+
+\[\begin{pmatrix} \lambda I_{n} & 0 \\ 0 & I_{n} \end{pmatrix} \begin{pmatrix} A & B
+\\ C & D \end{pmatrix} \begin{pmatrix} \lambda^{-1} I_{n} & 0 \\ 0 & I_{n}
+\end{pmatrix} = \begin{pmatrix} A & \lambda B \\ \lambda^{-1}C & D
+\end{pmatrix}.\]
+
+We can express the decomposition above by the formula
+
+\[\text{GSp}\left(W\right) = Z^{+} \cdot S \cdot \text{Sp}\left(W\right) = S
+\cdot \text{GSp}^2\left(W\right).\]
+
+\section{Examples}
+
+If $\text{dim} \, W = 2$, then $\text{Sp}\left(W\right) = \text{SL}\left(2,
+F\right)$ and $\text{GSp}\left(W\right) = \text{GL}\left(2, F\right)$.
+
+If $F^{\times}/F^{\times, 2} = 1$, then $\text{GSp}\left(W\right) =
+\text{GSp}^2\left(W\right) \cong F^{\times} \times \text{Sp}\left(W\right)$.
+This case occurs if $F$ is algebraically closed or of characteristic $2$. For
+instance, if $F = \mathbb{C}$ or if $F$ is the finite field of order $2^{k}$.
+
+If $\left|F^{\times}/F^{\times, 2}\right| = 2$, then $\left\{ \pm 1 \right\}$ is
+a set of representative for $\left|F^{\times}/F^{\times,2}\right|$ and is also a
+group. In this case the decompositions $S \cdot \text{Sp}\left(W\right)$ and $S
+\cdot \text{Sp}^{2}\left(W\right)$ are semidirect products. The former consists
+of elements
+
+\[\begin{pmatrix} A & B \\ C & D \end{pmatrix}, \begin{pmatrix} -A & -B \\ C & D
+\end{pmatrix}\]
+
+with $\begin{pmatrix} A & B \\ C & D \end{pmatrix} \in \text{Sp}\left(W\right)$.
+This case occurs if $F = \mathbb{R}$ or $F$ is a finite field of characteristic
+not equal to $2$. Observe that if $\left|F^{\times}/F^{\times,2}\right| > 2$, we
+can not choose $\left\{ \lambda_{i} \right\}$ to form a group.
+$F^{\times}/F^{\times,2}$ is an elementary abelian $2$-group. Therefore, if
+$\left\{ \lambda_{i} \right\}$ was a group, then $\lambda_{i}^{2} = 1$ for all
+$\lambda_{i}$, but the only square roots of $1$ in a field are $\pm 1$.
+
+If $F$ is a finite field of order $q$ and $\text{dim} \, W = 2n$, then
+
+\[\left|\text{GSp}\left(W\right)\right| = \left(q - 1\right)
+\left|\text{Sp}\left(W\right)\right|.\]
+
+It is known that 
+
+\[\left|\text{Sp}\left(W\right)\right| = q^{n^{2}} \prod_{i = 1}^{n}
+\left(q^{2i} - 1\right).\]
+
+\section{The Heisenberg Group}
+
+Let $F$ be a nonarchimedian local field of characteristic not equal to $2$. Let
+$H\left(W\right)$ be the Heisenberg group of $W$. $\text{GSp}\left(W\right)$
+acts as a group of automorphisms on $H\left(W\right)$ by 
+
+\[g\left(w, t\right) = \left(gw, s\left(g\right) t\right).\]
+
+This is clearly a left group action. We check it is an automorphism of
+$H\left(W\right)$; 
+
+\[g\left[\left(w_1, t_1\right) \left(w_2, t_2\right)\right] = g\left(w_1 +
+w_2, t_1 + t_2 + \frac{1}{2} \langle w_1, w_2\rangle\right)\] 
+
+\[= \left(gw_1 + gw_2, s\left(g\right)t_1 + s\left(g\right)t_2 +
+\frac{s\left(g\right)}{2} \langle w_1, w_2\rangle\right)\] 
+
+\[= \left(gw_1 + gw_2, s\left(g\right)t_1 + s\left(g\right)t_2 + \frac{1}{2}
+\langle gw_1, gw_2\rangle\right)\] 
+
+\[\left(gw_1, s\left(g\right)t_1\right) \left(gw_2,
+s\left(g\right)t_2 \right)\]
+
+\[\left[g\left(w_1, t_1\right)\right] \left[g \left(w_2,
+t_2 \right)\right].\]
+
+Let $\psi$ be a nontrivial character of $F$. Let $\psi_{a}\left(t\right) =
+\psi\left(at\right)$. Let $\rho_{\psi}$ be the unique smooth irreducible
+representation of $H\left(W\right)$ with central chracter $\psi$. Then
+$\rho_{\psi}^{g}\left(h\right) = \rho_{\psi}\left(g^{-1}h\right)$ is a smooth
+irreducible representation of $H\left(W\right)$ with central chracter
+$\psi_{s\left(b\right)}$. Hence, $\rho_{\psi}^{g} \cong
+\rho_{\psi_{s\left(b\right)}}$.
+
+\end{document}

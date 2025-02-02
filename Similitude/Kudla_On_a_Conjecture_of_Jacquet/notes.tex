@@ -1,0 +1,277 @@
+\documentclass[12pt]{article}
+
+\usepackage{microtype}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{tikz-cd}
+
+\title{Notes on ``On a conjecture of Jacquet'' by Harris and Kudla}
+\author{Nick Pilotti}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Theorem to be proved.} Let $k$ be a number field and let $\pi_{i}, \; i =
+1, 2, 3$ be cuspidal automorphic representations of
+$\text{GL}_{2}\left(\mathbb{A}\right)$ such that the product of their central
+characters is trivial. Jacquet conjectured that the central value
+$L\left(\frac{1}{2}, \pi_{1} \otimes \pi_2 \otimes \pi_{3}\right)$ of the triple
+product L-function is nonzero if and only if there exists quaternion algebra
+$B$ over $k$ and automorphic forms $f_{i}^{B} \in \pi_{i}^{B}$ such that the
+integral 
+%
+\[I\left(f_{1}^{B}, f_{2}^{B}, f_{3}^{B}\right) = \int_{Z\left(\mathbb{A}\right)
+B^{\times}\left(k\right) \backslash B^{\times}\left(\mathbb{A}\right)}^{}
+f_1^{B}\left(b\right)f_2^{B}\left(b\right)f_3^{B}\left(b\right) \,
+\mathrm{d}^{\times} b \neq 0\] 
+%
+where $\pi_{i}^{B}$ is the representation of $B^{\times}\left(\mathbb{A}\right)$
+corresponding to $\pi_{i}$.
+
+\textbf{Summary.} The proof comes down to the equality 
+%
+\[L\left(\frac{1}{2}, \pi_{1} \otimes \pi_{2} \otimes \pi_{3}\right) \cdot
+Z^{*}\left(F, \Phi\right)\]
+% 
+\[= \sum_{r}^{} \int_{\mathbb{A}^{\times} B^{\times}\left(k\right) \backslash
+B^{\times}\left(\mathbb{A}\right)}^{} I^{1, r}\left(b_1, \varphi; F\right) \,
+\mathrm{d}b_{1} \cdot \int_{\mathbb{A}^{\times}B^{\times}\left(k\right)
+\backslash B^{\times}\left(\mathbb{A}\right)}^{} I^{2,r}\left(b_{2}, \varphi; F\right) \, \mathrm{d}b_2\]
+%
+The integrals in the second expression are finite linear combinations of the
+quantities $I\left(f_1^{B}, f_2^{B}, f_{3}^{B}\right)$ and every such quantity
+can be obtained as an integral
+$\int_{\mathbb{A}^{\times}B^{\times}\left(k\right) \backslash
+B^{\times}\left(\mathbb{A}\right)}^{} I^{1, r}\left(b_{1}, \varphi; F\right) \,
+\mathrm{d}b_{1}$ for some $\varphi, F$ and $r$.
+
+Section $1$ introduces a representation of the triple product L-function in
+terms of a Zeta integral and the integral of an Eisenstein series. Section $2$
+shows how the integral representation should be modified by changing the Zeta
+integral at the local factors.
+Section $3$ constructs 
+
+\section{The integral representation of the triple product $L$-function.}
+
+\begin{itemize}
+    
+\item Let $G = \text{GSp}_{6}$ be the group of similitudes of the standard $6$
+dimensional symplectic vector space over $k$, and let $P = MN$ be the Siegel
+parabolic.
+
+\item Let $K_{G} = K_{G, \infty} \cdot K_{G, f}$ be the standard maximal compact
+subgroup of $G\left(\mathbb{A}\right)$.
+
+\item $\lambda_{s}$ denotes a character of $P\left(\mathbb{A}\right)$
+parameterized by $s \in \mathbb{C}$.
+
+\item Let $I\left(s\right) = I_{P}^{G}\left(\lambda_{s}\right)$ be the
+normalized induced representation of $G\left(\mathbb{A}\right)$.
+
+\item The Eisenstein series associated to a section $\Phi_{s} \in
+I\left(s\right)$ is defined for $\text{Re}\left(s\right) > 1$ by 
+%
+\[E\left(g, s, \Phi_{s}\right) = \sum_{\gamma \in P\left(k\right) \backslash
+G\left(k\right)}^{}  \Phi_{s}\left(\gamma g\right),\]
+%
+and the normalized Eisenstein series is 
+%
+\[E^{*}\left(g, s, \Phi_{s}\right) = b_{G}\left(s\right) \cdot E\left(g, s,
+\Phi_{s}\right),\]
+%
+where $b_{G}\left(s\right)$ is a function of $s$. These functions have
+meromorphic analytic continuations to the whole $s$-plane and have no poles on
+the unitary axis $\text{Re}\left(s\right) = 0$.
+
+\item The map 
+%
+\[E^{*}\left(0\right) : I\left(0\right) \rightarrow \mathcal{A}\left(G\right),
+\; \Phi_{0} \mapsto \left(g \mapsto E^{*}\left(g, 0, \Phi_{s}\right)\right)\]
+%
+gives a $\left(g_{\infty}, K_{G,\infty}\right) \times
+G\left(\mathbb{A}_{f}\right)$-intertwining map from the induced representation
+$I\left(0\right)$ at $s = 0$ to the space of automorphic forms on $G$ with
+trivial central character.
+
+\item Let 
+%
+\[\textbf{G} = \left(\text{GL}_{2} \times \text{GL}_{2} \times
+\text{GL}_{2}\right)_{0}\]
+%
+\[= \left\{\left(g_1, g_2, g_3\right) \in \left(\text{GL}_{2}\right)^{3} |
+\text{det}\left(g_1\right) = \text{det}\left(g_2\right) =
+\text{det}\left(g_3\right)\right\}.\]
+%
+This group embeds diagonally in $G = \text{GSp}_{6}$.
+
+\item For automorphic forms $f_{i} \in \pi_{i}, i = 1, 2, 3$, let $F = f_1
+\otimes f_2 \otimes f_3$ be the corresponding function on
+$G\left(\mathbb{A}\right)$. The global zeta integral is given by 
+%
+\[Z\left(s, F, \Phi_{s}\right) = \int_{Z_{G}G\left(k\right) \backslash
+G\left(\mathbb{A}\right)}^{} E^{*}\left(g, s, \Phi_{s}\right) F\left(g\right) \, \mathrm{d} g.\]
+%
+\item Suppose that the automorphic forms $f_{i} \in \pi_{i}$ have factorizable
+Whittaker functions $W_{i}^{\psi} = \otimes_{v} W_{i,v}^{\psi}$ and that the
+section $\Phi_{s}$ is factorizable. Let $S$ be a finite set of places of $k$,
+including all archimedean places, such that, for $v \not \in S$, the local data
+satisfies properties $(i)$, $(ii)$, and $(iii)$ in the main text. Then 
+%
+\[Z\left(s, F, \Phi_{s}\right) = L^{S}\left(s + \frac{1}{2}, \pi_1 \otimes \pi_2
+\otimes \pi_3\right) \cdot \prod_{v \in S} Z_{v}\left(s, W_{v}^{\psi}, \Phi_{s,
+v}\right),\]
+%
+for local zeta integrals $Z_{v}\left(s, W_{v}^{\psi}, \Psi_{s, v}\right)$, where
+$W_{v}^{\psi} = W_{1, v}^{\psi} W_{2, v}^{\psi} W_{3, v}^{\psi}$. $L^{S}\left(s,
+\pi_1 \otimes \pi_2 \otimes \pi_3\right)$ is the triple product $L$-functions
+with the factors for $v \in S$ omitted.
+
+\item The local zeta integrals are defined by 
+%
+\[Z_{v}\left(s, W_{v}^{\psi}, \Phi_{s, v}\right) =
+\int_{Z_{G}\left(k_{v}\right)M\left(k_{v}\right) \backslash
+G\left(k_{v}\right)}^{} \Phi_{s, v}\left(\delta g\right)
+W_{v}^{\psi}\left(g\right) \, \mathrm{d}g\] 
+%
+where $\delta \in G\left(k\right)$
+is a representative for the open orbit of $G$ in $P \backslash G$.
+
+\end{itemize}
+
+\section{Local zeta integrals.}
+
+\begin{itemize}
+
+\item The key result is the existance of a local Euler factor. Let $\pi_{i, v},
+\; i = 1, 2, 3$, be a triple of admissible irreducible representations of
+$\text{GL}\left(2, k_{v}\right)$ that arise as local components at $v$ of
+cuspidal automorphic representations $\pi_{i}$. The quotient 
+%
+\[\tilde{Z}_{v}\left(s, W_{v}^{\psi}, \Psi_{s, v}\right) = Z_{v}\left(s,
+W_{v}^{\psi}, \Phi_{s, v}\right) \cdot L\left(s + \frac{1}{2}, \pi_{1, v}
+\otimes \pi_{2, v} \otimes \pi_{3, v}\right)^{-1}\]
+%
+is entire as a function of $s$.
+
+\item Consequently, we have the identity
+%
+\begin{multline}L\left(\frac{1}{2}, \pi_{1} \otimes \pi_{2} \otimes
+\pi_{3}\right) \cdot \prod_{v \in S}^{}  Z_{v}^{*}\left(0, W_{v}^{\psi},
+\Phi_{s, v}\right) \\
+= \int_{Z_{G}\left(\mathbb{A}\right) G\left(k\right) \backslash
+G\left(\mathbb{A}\right)}^{} E^{*}\left(g, 0, \Psi_{s}\right) F\left(g\right) \,
+\mathrm{d}g,\end{multline}
+%
+where 
+%
+\[Z_{v}^{*}\left(s, W_{v}^{\psi}, \Phi_{s, v}\right) = \begin{cases}
+\tilde{Z}_{v}\left(s, W_{v}^{\psi}, \Phi_{s, v}\right) & \text{if } v \in
+S_{f},\\ Z_{v}\left(s, W_{v}^{\psi}, \Phi_{s, v}\right) & \text{if } v \in
+S_{\infty}. \end{cases}\]
+%
+We make the abbreviation 
+%
+\[Z^{*}\left(F, \Phi\right) = \prod_{v \in S}^{} Z_{v}^{*}\left(0, W_{v}^{\psi},
+\Phi_{s, v}\right).\]
+%
+\end{itemize}
+
+\section{The Weil representation for similitudes.}
+
+\begin{itemize}
+    
+\item Let $B$ be a quaternion algebra over $k$, and let $V = B$ be a $4$
+dimensinal quadratic space over $k$ where the quadratic form is given by
+$Q\left(x\right) = \alpha v\left(x\right)$, where $v$ is the reduced norm on $B$
+and $\alpha \in k^{\times}$
+
+\item Let $H = \text{GO}\left(V\right)$ and $H_{1} = \text{O}\left(V\right)$.
+Let $G = \text{GSp}_{6}$ and let $G_{1} = \text{Sp}_{6}$.
+
+\item Let 
+%
+\[R = \left\{\left(h, g\right) \in H \times G \; | \; v\left(h\right) =
+v\left(g\right)\right\}.\]
+%
+There exists an extension of the standard Weil representation $\omega =
+\omega_{\psi}$ of $H_{1}\left(\mathbb{A}\right) \times
+G_{1}\left(\mathbb{A}\right)$ on the Schwartz space
+$S\left(V\left(\mathbb{A}\right)^{3}\right)$ to $R\left(\mathbb{A}\right)$.
+
+\item Let 
+%
+\[G\left(\mathbb{A}\right)^{+} := \left\{g \in G\left(\mathbb{A}\right) \; | \;
+v\left(g\right) \in v\left(H\left(\mathbb{A}\right)\right)\right\}\]
+% 
+\[= \left\{g \in G\left(\mathbb{A}\right) \; | \; v\left(g\right)_{v} > 0, \;
+\forall v \in \Sigma_{\infty}\left(V\right)\right\}.\]
+%
+\item For $g \in G\left(\mathbb{A}\right)^{+}$, and $\varphi \in
+S\left(V\left(\mathbb{A}\right)^{3}\right)$, and for $V$ anisotropic over $k$,
+the theta integral is defined by 
+%
+\[I\left(g, \varphi\right) = \int_{H_{1}\left(k\right) \backslash
+H_{1}\left(\mathbb{A}\right)}^{} \theta\left(h_1h, g; \varphi\right) \,
+\mathrm{d}h_{1},\]
+%
+where $h \in H\left(\mathbb{A}\right)$ with $v\left(h\right) = v\left(g\right)$.
+An alternate definition has to made if $V$ is not anisotropic over $k$.
+$I\left(g, \varphi\right)$ has a unique extension to a left
+$G\left(k\right)$-invariant function on $G\left(\mathbb{A}\right)$.
+
+\end{itemize}
+
+\section{The Siegel-Weil formula for $\left(\text{GO}\left(V\right),
+\text{GSp}_{6}\right)$.}
+
+\section{Proof of Jacquet's conjecture.}
+
+\begin{itemize}
+    
+\item Applying the Siegel-Weil formula for similitudes to the basic identity
+(1), we obtain 
+%
+\[L\left(\frac{1}{2}, \pi_1 \otimes \pi_2 \otimes \pi_3\right) \cdot
+Z^{*}\left(F, \Phi\right)\]
+%
+\[= \int_{Z_{G}\left(\mathbb{A}\right)G\left(k\right) \backslash
+G\left(\mathbb{A}\right)}^{} E^{*}\left(g, 0, \Psi_{s}\right) F\left(g\right) \,
+\mathrm{d}g\] 
+%
+\[= 2 \zeta_{k}\left(2\right)^{2} \sum_{V}^{}
+\int_{Z_{G}\left(\mathbb{A}\right)G\left(k\right) \backslash
+G\left(\mathbb{A}\right)} I\left(g, \varphi^{V}\right) F\left(g\right)
+\mathrm{d}g.\]
+
+\item Next, we want to apply the seesaw identity. We set 
+%
+\[H = \text{GO}\left(V\right)\]
+%
+%
+\[\textbf{H} = \left\{\left(h_1, h_2, h_3\right) \in H^{3} | v\left(h_{1}\right)
+= v\left(h_2\right) = v\left(h_3\right)\right\}\]
+%
+For $F$ a cuspidal automorphic form on $\textbf{G}\left(\mathbb{A}\right)$ and
+for $h \in \textbf{H}\left(\mathbb{A}\right)$, let 
+%
+\[I\left(h, \varphi; F\right) = \int_{\textbf{G}_{1}\left(k\right) \backslash
+\textbf{G}_1\left(\mathbb{A}\right)}^{} \theta\left(h, \textbf{g}_1\textbf{g};
+\varphi\right) F\left(\textbf{g}_{1} \textbf{g}\right) \,
+\mathrm{d}\textbf{g}_{1}.\]
+%
+The seesaw identity is
+%
+\[\int_{Z_{G}\left(\mathbb{A}\right) \textbf{G}\left(k\right) \backslash
+\textbf{G}\left(\mathbb{A}\right)}^{} I\left(g, \varphi\right) F\left(g\right)
+\, \mathrm{d}g = \int_{Z_{H}\left(\mathbb{A}\right)H\left(k\right) \backslash
+H\left(\mathbb{A}\right)}^{} I\left(h, \varphi ; F \right) \, \mathrm{d}h.\]
+%
+\item 
+\end{itemize}
+
+
+\end{document}

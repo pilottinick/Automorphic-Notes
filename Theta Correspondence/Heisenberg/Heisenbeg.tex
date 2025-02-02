@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+
+\usepackage{microtype}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{tikz-cd}
+
+\title{Notes on Local Theta Correspondence (Gan, Kudla Takeda) - Chapter 1 -
+Heisenberg Representation}
+\author{Nick Pilotti}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+$\left(W, \langle \cdot, \cdot \rangle\right)$ is a nondegenerate symplectic
+space. $F$ is a non-archimedean local field or a finite field of characteristic
+differnt from $2$. The Heisenberg group associated to $W$ is defined is the set
+
+
+\[H\left(W\right) := W \times F\]
+
+with multiplication defined by 
+
+\[\left(w, t\right) \cdot \left(w', t'\right) = \left(w + w', t + t' +
+\frac{1}{2}\langle w, w' \rangle\right).\]
+
+$H\left(W\right)$ is given the product topology. We verify that
+$H\left(W\right)$ is a topological group.
+
+The multiplication law is associative 
+
+\[\left(\left(w_1, t_1\right) \left(w_2, t_2\right)\right) \left(w_3,
+t_3\right)\]
+
+\[= \left(w_1 + w_2, t_1 + t_2 + \frac{1}{2} \langle w_1, w_2 \rangle\right)
+\left(w_3, t_3\right)\] 
+
+\[= \left(w_1 + w_2 + w_3, t_1 + t_2 + t_3 + \frac{1}{2} \langle w_1, w_2
+\rangle + \frac{1}{2} \langle w_1 + w_2, w_3 \rangle\right).\] 
+
+\[= \left(w_1 + w_2 + w_3, t_1 + t_2 + t_3 + \frac{1}{2} \langle w_1, w_2
+\rangle + \frac{1}{2} \langle w_1, w_3 \rangle + \frac{1}{2} \langle w_2, w_3
+\rangle\right)\] 
+
+\[= \left(w_1 + w_2 + w_3, t_1 + t_2 + t_3 + \frac{1}{2}\langle w_1, w_2 + w_3
+\rangle + \frac{1}{2} \langle w_2, w_3 \rangle\right)\] 
+
+\[\left(w_1, t_1\right) \left(w_2 + w_3, t_2 + t_3 + \frac{1}{2} \langle w_2,
+w_3 \rangle\right)\] 
+
+\[\left(w_1, t_1\right) \left( \left(w_2, t_2 \right) \left(w_3, t_3
+\right)\right).\]
+
+The idetity element is $\left(0, 0\right)$; 
+
+\[\left(0, 0\right)\left(w, t\right) = \left(0 + w, 0 + t + \frac{1}{2} \langle
+0, t \rangle\right) = \left(w, t\right).\]
+
+The inverse of $\left(w, t\right)$ is $\left(-w, -t\right)$; 
+
+\[\left(w, t\right) \left(-w, -t\right) = \left(w - w, t - t + \frac{1}{2}
+\langle w, -w \rangle\right) = \left(0, 0\right).\]
+
+It is clear that the operations of multiplication and inversion are continuous,
+making $H\left(W\right)$ into a topological group.
+
+We show the center of the Heisenberg group is 
+
+\[Z_{H\left(W\right)} = \left\{\left(0, t\right) : t \in F\right\} \cong F.\]
+
+$Z_{H\left(W\right)}$ is a subgroup isomorphic to $F$ since 
+
+\[\left(0, t\right) \left(0, t'\right) = \left(0, t + t'\right).\]
+
+$Z_{H\left(W\right)}$ is in the center of $H\left(W\right)$ because 
+
+\[\left(0, t\right) \left(w', t'\right) = \left(w', t + t'\right) = \left(w',
+t'\right) \left(0, t\right).\]
+
+Suppose that $\left(w, t\right)$ is an element of $H\left(W\right)$ but $w \neq
+0$. Since $\langle \cdot, \cdot \rangle$ is nondegenerate, there exists $w' \in
+W$ such that $\langle w, w' \rangle \neq 0$. We have 
+
+\[\left(w, t\right) \left(w', -t\right) = \left(w + w', \frac{1}{2} \langle w,
+w' \rangle\right)\]
+
+and 
+
+\[\left(w', -t\right) \left(w, t\right) = \left(w + w', \frac{1}{2} \langle w',
+w \rangle\right) = \left(w + w', - \frac{1}{2}\langle w, w' \rangle\right).\]
+
+Hence, $\left(w, t\right)$ is not in the center.
+
+We verify the identities
+
+\[\left(w + w', 0\right) = \left(w + w', - \frac{1}{2} \langle w, w' \rangle +
+\frac{1}{2} \langle w, w' \rangle\right) = \left(w, -\frac{1}{2}\langle w, w'
+\rangle\right)\left(w', 0\right)\] 
+
+and
+
+\[\left(w, 0\right)\left(w', 0\right) = \left(w + w', \frac{1}{2} \langle w, w'
+\rangle\right) = \left(w + w', -\frac{1}{2}\langle w', w\rangle\right)\] 
+
+\[= \left(w + w', -\langle w', w \rangle + \frac{1}{2}\langle w', w
+\rangle\right) = \left(w + w', \langle w, w' \rangle + \frac{1}{2}\langle w', w
+\rangle \right)\]
+
+\[= \left(w', \langle w, w' \rangle\right)\left(w, 0\right)\]
+
+for all $w, w' \in W$ and $t \in F$.
+
+\end{document}

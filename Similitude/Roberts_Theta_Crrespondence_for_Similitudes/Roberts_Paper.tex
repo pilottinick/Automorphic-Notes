@@ -1,0 +1,399 @@
+\documentclass[12pt]{article}
+
+\usepackage{microtype}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{MnSymbol}
+
+\usepackage{tikz-cd}
+
+\title{Notes on ``The Theta Correspondence for Similitudes'' By Brooks Roberts}
+\author{Nick Pilotti}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Fixing notation.}
+\begin{itemize}
+\item $k$ a nonarchimedean local field.
+\item X a finite dimensional nondegenerate symmetric bilinear space over $k$.
+\item Y a finite dimensional nondegenerate symplectice bilinear space over $k$.
+\item $p$ the projection $\text{Mp}\left(X \otimes_{k} Y\right) \rightarrow
+\text{Sp}\left(X \times_{k} Y\right)$.
+\item $r$ the smooth Weil representation of $\text{Mp}\left(X \times_{k}
+Y\right)$ (corresponding to some fixed nontrivial additive character of $k$).
+\end{itemize}
+
+\textbf{The theta correspondence.}
+ 
+ The restriction of $r$ to $p^{-1}\left(\text{O}\left(X\right)\right)p^{-1}\left(\text{Sp}\left(Y\right)\right)$
+definites a correspondence between the smooth admissible duals of
+$p^{1}\left(\text{O}\left(X\right)\right)$ and
+$p^{-1}\left(\text{Sp}\left(Y\right)\right)$. When the residue characteristic of
+$k$ is odd, this correspondence satisfies strong Howe duality.
+
+\textbf{Biblographic notes for ease of reference.} 
+
+The Weil representation was first constructed in Weil (1964) ``Sur certain
+groupes d'opérateurs unitaires.'' The theta correspondence was introduced in
+Howe (1979) ``$\theta$-series and invariant theory.'' Howe duality was proved
+for archimedean local fields in Howe (1989) ``Transcending classical invariant
+theory'' and for $p$-adic fields with $p$ odd in Waldspurger (1990)
+''Démonstration d'une conjecture de dualité de Howe danse le case p-adique, $p
+\neq 2$.'' A classic reference (in French) is MVW (1987) ''Correspondance de
+Howe sur un corps p-adique.'' A useful set of notes is Kulda (1996) ''Notes on
+the Local Theta Correspondence'' and Gan's AWS notes. A very comprehensive
+modern textbook is GKT ''The Local Theta Correspondence.''
+
+\textbf{Summary of the paper.}
+
+The two main approaches to a theta correspondence for
+similitudes are ''essentially the same'' and a version of strong Howe duality
+holds for both constructions. The two main constructions are:
+
+\begin{itemize}
+\item Extend the restriction of $r$ to
+$p^{1}\left(\text{O}\left(X\right)\right)p^{-1}\left(\text{Sp}\left(Y\right)\right)$
+to a representation $\omega$ of a larger group involving similitudes.
+\item Induce the restriction of $r$ to
+$p^{-1}\left(\text{Sp}\left(Y\right)\right)$ to obtain a representation $\Omega$
+that involves similitues.
+\end{itemize}
+
+\textbf{More notation.}
+
+\begin{itemize}
+
+\item $H = \text{GO}\left(X\right)$.
+
+\item If $\text{dim}_{k} X$ is even, let $G' = \text{GSp}\left(Y\right)$.
+
+\item If $\text{dim}_{k} X$ is odd, let $G'$ be a certain two-fold cover of
+$\text{GSp}\left(Y\right)$.
+
+\item For $g \in G'$, let $\lambda\left(g\right)$ be the similitude factor of
+the projection of $g$ to $\text{GSp}\left(Y\right)$. Let $\lambda\left(h\right)$
+be the similitude factor of $h \in H$.
+
+\item Let $G$ be the subgroup of $g \in G'$ such that $\lambda\left(g\right) \in
+\lambda\left(H\right)$ (recall that the map $\lambda$ is surjective on
+$\text{GSp}\left(Y\right)$ but not necessarily on $\text{GO}\left(X\right)$).
+
+\item Let $G_1$ and $H_1$ be the subgroups of $g \in G$ and $h \in H$ such that
+$\lambda\left(g\right) = 1$ and $\lambda\left(h\right) = 1$, respectively (so
+$H_{1}$ is just $\text{O}\left(X\right)$ and $G_{1}$ is
+$\text{Sp}\left(Y\right)$ in case $\text{dim}_{k} X$ is even.
+
+\item $\omega$ is a representation of the group 
+
+\[R = \left\{\left(g, h\right) \in G' \times H : \lambda\left(g\right) =
+\lambda\left(h\right)\right\}\]
+
+and $\Omega$ is a representation of $G' \times H$.
+
+\end{itemize}
+
+\textbf{Detailed summary.}
+
+\begin{itemize}
+    
+\item Section $1$ defines Howe duality, multiplication preservation, and strong
+Howe duality. It also shows that Howe duality and multiplication preservation
+are equivalent to strong Howe duality.
+
+\item Sections $2$ and $3$ construct and relate $\omega$ and $\Omega$. $\Omega$
+is obtained from $\omega$ via compact induction: 
+
+\[\Omega \cong \text{c-Ind}_{R}^{G' \times H} \omega.\]
+
+\item Section 4 studies the correspondence defined by $\omega$. In particular,
+it proves that the analogues of Howe duality and multiplicity preservation hold.
+
+\item Sections $5$ and $6$ consider the consequences of section $4$ for
+$\Omega$. It gives a condition for Howe duality called theta dichotomy. It shows
+that Howe duality does not hold for $\Omega$ in the stable range. When
+$\text{dim}_{k} X \leq \text{dim}_{k} Y$, strong Howe duality for $\Omega$ is
+expected to hold.
+
+\end{itemize}
+
+\textbf{Some more notation.}
+
+
+\begin{itemize}
+    
+\item Let $J$ be a group of td-type. This means that $J$ is a topological group
+and every neighborhood of the identity element of $J$ contains a compact open
+subgroup. For such groups, Schur's lemma holds.
+
+\item Let $\text{Irr}\left(J\right)$ be the set of equivalence classes of smooth
+admissible irreducible representations of $J$.
+
+\item If $\pi \in \text{Irr}\left(J\right)$ then $\pi^{\vee} \in
+\text{Irr}\left(J\right)$ denotes its contragredient representation.
+
+\item A character of $J$ is a continuous homomorphism from $J$ to
+$\mathbb{C}^{\times}$.
+
+\item If $L$ is a closed normal subgroup of $J$, $\pi \in
+\text{Irr}\left(L\right)$ and $g \in J$, then $g \pi \in
+\text{Irr}\left(L\right)$ is the representation with the same space as $\pi$ and
+action defined by $\left(g \pi\right)\left(h\right) = \pi\left(g^{-1}hg\right)$,
+and $J_{\pi}$ is the subgroup of $g \in J$ such that $g \pi \cong \pi$.
+
+\item Let $\left(\;,\;\right)_{k}$ denote the Hilbert symbol of $k$.
+
+\end{itemize}
+
+\section{Howe duality and multiplicity preservation}
+
+\textbf{Existence and uniquenss of the big theta lift.}
+
+Let $A$ and $B$ be groups of td-type, with countable bases. Let $\left(\rho,
+\mathcal{U}\right)$ be a smooth representation of $A \times B$. Let $\pi \in
+\text{Irr}\left(A\right)$. Define 
+
+\[\mathcal{U}\left(\pi\right) = \mathcal{U} / \bigcap_{t \in
+\text{Hom}_{A}\left(p, \pi\right)} \text{ker}\left(t\right).\]
+
+Via $\rho$, $A \times B$ acts on $\mathcal{U}\left(\pi\right)$. Call this
+representation $\rho\left(\pi\right)$. By [MVW] there exists a smooth
+representation $\Theta\left(\pi\right)$ of $B$, unique up to isomorphism, such
+that 
+
+\[\rho\left(\pi\right) \cong \pi \otimes_{\mathbb{C}} \Theta\left(\pi\right)\]
+
+as representations of $A \times B$. Analogous remarks apply for elements of
+$\text{Irr}\left(B\right)$.
+
+\textbf{Strong Howe duality.}
+
+Let $\mathcal{R}\left(A\right)$ be the set of equivalence classes of $\pi \in
+\text{Irr}\left(A\right)$ such that $\mathcal{U}\left(\pi\right) \neq 0$ and
+define $\mathcal{R}\left(B\right)$ similarly. We say that strong Howe duality
+holds for $\rho$ if for every $\pi \in \mathcal{R}\left(A\right)$ the
+representation $\Theta\left(\pi\right)$ has a unique nonzero irreducible
+quotient $\theta\left(\pi\right) \in \mathcal{R}\left(B\right)$, and for every
+$\tau \in \mathcal{R}\left(B\right)$ the representation
+$\Theta\left(\tau\right)$ has a unique nonzero irreducible quotient
+$\theta\left(\tau\right) \in \mathcal{R}\left(A\right)$.
+
+\textbf{Howe duality.} We say that Howe duality holds for $\rho$ if the set 
+
+\[\mathcal{R}\left(A \times B\right) = \left\{\left(\pi, \tau\right) \in
+\mathcal{R}\left(A\right) \times \mathcal{R}\left(B\right) : \text{Hom}_{A
+\times B}\left(\rho, \pi \otimes_{\mathbb{C}} \tau\right) \neq 0\right\}\]
+
+is the graph of a bijection between $\mathcal{R}\left(A\right)$ and
+$\mathcal{R}\left(B\right)$. Equivalently, Howe duality holds for $\rho$ if and
+only if $(1)$ every $\pi \in \mathcal{R}\left(A\right)$ occurs as the first
+entry of an element of $\mathcal{R}\left(A \times B\right)$ and every $\tau \in
+\mathcal{R}\left(B\right)$ occurs as the second entry of an element of
+$\mathcal{R}\left(A \times B\right)$; and (2) for all $\pi \in
+\text{Irr}\left(A\right)$ and $\tau_1, \tau_2 \in \text{Irr}\left(B\right)$, 
+
+\[\text{Hom}_{A \times B}\left(\rho, \pi \otimes_{\mathbb{C}} \tau_1\right) \neq
+0, \; \text{Hom}_{A \times B}\left(\rho, \pi \otimes_{\mathbb{C}} \tau_2\right)
+\neq 0 \implies \tau_1 \equiv \tau_2;\]
+
+for all $\pi_1, \pi_2 \in \text{Irr}\left(A\right)$ and $\tau \in
+\text{Irr}\left(B\right)$, 
+
+\[\text{Hom}_{A \times B}\left(\rho, \pi_1 \otimes_{\mathbb{C}} \tau\right) \neq
+0, \; \text{Hom}_{A \times B}\left(\rho, \pi_{2} \otimes_{\mathbb{C}}
+\tau\right) \neq 0 \implies \pi_{1} \cong \pi_{2}.\]
+
+\textbf{Multiplicity preservation.} We show that multiplicity preservation holds
+for $\rho$ if for all $\pi \in \text{Irr}\left(A\right)$ and $\tau \in
+\text{Irr}\left(B\right)$, 
+
+\[\text{dim}_{\mathbb{C}} \text{Hom}_{A \times B}\left(\rho, \pi \otimes_{C}
+\tau\right) \leq 1.\]
+
+\textbf{Proposition 1.1.} 
+
+Strong Howe duality holds for $\rho$ if and only if
+Howe duality and multiplicity preservation hold for $\rho$. If strong Howe
+duality holds for $\rho$, then the map $\theta : \mathcal{R}\left(A\right)
+\rightarrow \mathcal{R}\left(B\right)$ is the bijection given by Howe duality.
+
+\textbf{Proposition 1.2. (used in section 6)}
+
+Assume that $A$ is contained in a group $A'$ of td-type with countable basis as
+a closed normal subgroup of index two. Let $a$ be a representative for the
+nontrivial coset of $A'/A$. Let $\rho' = \text{Ind}_{A \times B}^{A' \times B}
+\rho$. All of the above definitions apply with $\rho'$ in place of $\rho$. If
+Howe duality holds for $\rho$, then Howe duality holds for $\rho'$ if and only
+if $\mathcal{R}\left(A\right) \cap a \cdot \mathcal{R}\left(A\right) =
+\emptyset$. If strong Howe duality holds for $\rho$, then strong Howe duality
+holds for $\rho'$ if and only if $\mathcal{R}\left(A\right) \cap a \cdot
+\mathcal{R}\left(A\right)$.
+
+\section{The groups}
+
+\textbf{Polarization of symplectic space.} Let $\left\llangle \;,\;
+\right\rrangle$ be a finite dimensional nondegenerate symplectic vector space
+over $k$. Assume $\mathbb{W} \neq 0$. There exists a basis $\mathbb{W}$ relative
+to which the symplectic form has a the matrix representation 
+
+\[\begin{pmatrix} 0 & I_{n} \\ I_{n} & 0 \end{pmatrix}\]
+
+where $I_{n}$ is the $n \times n$ identity matrix and $2n =
+\text{dim}\left(\mathbb{W}\right)$. Take $\mathbb{U}$ to be the subspace
+generated by the first $n$ vectors in this basis (the symplectic form restricted
+to $\mathbb{U}$ is $0$). We see that $\mathbb{U}^{*}$ can be identified with the
+subspace generated by the remaining $n$ vectors. Hence, $\mathbb{W} \cong
+\mathbb{U} \oplus \mathbb{U}^{*}$. We write elements of
+$\text{GL}\left(\mathbb{W}\right)$ with repsect to this basis.
+
+\textbf{Definition and structure of $\text{GSp}\left(\mathbb{W}\right)$.} Let
+$\text{GSp}\left(\mathbb{W}\right)$ be the subgroup of
+$\text{GL}\left(\mathbb{W}\right)$ such that there exists $\lambda \in
+k^{\times}$ such that $\left\llangle gw, gw' \right\rrangle = \lambda
+\left\llangle w, w'\right\rrangle$ for all $w, w' \in \mathbb{W}$. If $g \in
+\text{GSp}\left(\mathbb{W}\right)$, then such a $\lambda$ is unique, and it will
+be denoted $\lambda\left(g\right)$. Let $\text{Sp}\left(\mathbb{W}\right)$ be
+the subgroup of $g \in \text{GSp}\left(\mathbb{W}\right)$ such that
+$\lambda\left(g\right) = 1$. $\lambda$ is a homomorphism and the map 
+
+\[y \mapsto \begin{pmatrix} 1 & 0 \\ 0 & y \end{pmatrix}\]
+
+is a splitting for the short exact sequence 
+
+\[1 \rightarrow \text{Sp}\left(\mathbb{W}\right) \rightarrow
+\text{GSp}\left(\mathbb{W}\right) \rightarrow k^{\times} \rightarrow 1.\]
+
+Hence, $\text{GSp}\left(\mathbb{W}\right) \cong k^{\times} \ltimes
+\text{Sp}\left(\mathbb{W}\right)$ and $k^{\times}$ acts on
+$\text{Sp}\left(\mathbb{W}\right)$ by conjugation.
+
+\textbf{The metaplectic similitude group.} 
+
+We denote by $\text{GMp}\left(\mathbb{W}\right)$ the metaplectic cover of
+$\text{GSp}\left(\mathbb{W}\right)$, constructed in more detail in the text.
+There is also a two-fold cover of $\text{GSp}\left(\mathbb{W}\right)$ denoted
+$\widehat{\text{GSp}\left(\mathbb{W}\right)}$ and an inclusion of
+$\widehat{\text{GSp}\left(\mathbb{W}\right)}$ in
+$\text{GMp}\left(\mathbb{W}\right)$ such that the following diagram commutes: 
+
+\[
+\begin{tikzcd} 
+\text{GMp}\left(\mathbb{W}\right) \arrow{r} & \text{GSp}\left(\mathbb{W}\right) \\
+\widehat{\text{GSp}\left(\mathbb{W}\right)} \arrow{u} \arrow{r} &
+\text{GSp}\left(\mathbb{W}\right) \arrow{u}.
+\end{tikzcd}
+\]
+
+\textbf{$\text{GO}\left(X\right)$ and $\text{GSp}\left(Y\right)$.}
+
+Let $\left(X, \left(\;, \;\right)\right)$ be a nondegenearte symmetric bilinear
+space over $k$ of dimension $m$, and let $\left(Y, \left\langle \;, \;
+\right\rangle\right)$ be a nondegenerate symplectic bilinear space over $k$ of
+dimension $2n$. For the remainder we will assume that 
+
+\[\left(\mathbb{W}, \left\llangle \;, \; \right\rrangle\right) = \left(X,
+\left(\;, \;\right)\right) \otimes_{k} \left(Y, \left\langle \;,\;
+\right\rangle\right),\]
+
+and there is a complete polarization $Y = U \oplus U^{*}$ such that $\mathbb{U}
+= X \otimes_{k} U$ and $\mathbb{U}^{*} = X \otimes_{k} U^{*}$. Let
+$\text{GO}\left(X\right)$ be the similitude group of $X$ defined in a similar
+way as for symplectic spaces. There are inclusions 
+
+\[\text{GO}\left(X\right) \rightarrow \text{GSp}\left(\mathbb{W}\right), \;
+\text{GSp}\left(Y\right) \rightarrow \text{GSp}\left(\mathbb{W}\right).\]
+
+The elements of $p^{-1}\left(\text{GO}\left(X\right)\right)$ and
+$p^{-1}\left(\text{GSp}\left(Y\right)\right)$ in general do not commute. We have
+the following results on the structure of these groups.
+
+\textbf{Proposition 2.1.}
+
+If $m$ is even, then $p^{-1}\left(\text{GSp}\left(Y\right)\right)$ is trivial as
+an extension of $\text{GSp}\left(Y\right)$ by $\mathbb{C}^{1}$. If $m$ is odd,
+then $p^{-1}\left(\text{GSp}\left(Y\right)\right)$ is the metaplectic cover of
+$\text{GSp}\left(Y\right)$.
+
+\textbf{Proposition 2.3.} Assume that the residual characteristic of $k$ is odd.
+If $m$ is odd, $m = 2$, or $m = 4$ and $X$ is anisotropic, then
+$p^{-1}\left(\text{GO}\left(X\right)\right)$ is trivial as an extension of
+$\text{GO}\left(X\right)$ by $\mathbb{C}^{1}$. If $m$ is even, $m \geq 4$ and
+$X$ is not four dimensional and anisotropic, then
+$p^{-1}\left(\text{GO}\left(X\right)\right)$ is trivial if and only if the
+character of $\text{GSO}\left(X\right)$ defined by $h \mapsto \left(-1,
+\lambda\left(h\right)\right)_{k}^{n}$ is trivial.
+
+\section{The representations}
+
+\textbf{Proposition 3.1.} Consider the subgroup of
+$\text{GSp}\left(\mathbb{W}\right)$ generated by the elements 
+
+\[\begin{pmatrix} \lambda\left(h\right)^{-1} & 0 \\ 0 & 1 \end{pmatrix} \left(h
+\otimes 1\right)\] for $h \in \text{GO}\left(X\right)$. This subgroup is
+isomorphic to $\text{GO}\left(X\right)$. Its preimage under $p$ is trivial as an
+extension of $\text{GO}\left(X\right)$ by $\mathbb{C}^{1}$.
+
+\textbf{Lemma 3.2. (Fundamental identity).} 
+
+Let $L$ be a splitting of the preimage of the subgroup from Proposition $3.1$.
+If $h \in \text{GO}\left(X\right)$ and $g \in
+p^{-1}\left(\text{Sp}\left(Y\right)\right)$ then 
+
+\[L\left(h\right)gL\left(h\right)^{-1} = g^{\lambda\left(h\right)^{-1}}.\]
+
+\textbf{Proposition 3.3. (Shimizu-Harris-Kudla).} 
+
+Define an action of $H$ on $G_1$ by $h \cdot g = g^{\lambda\left(h\right)^{-1}}$
+and form the semidirect product $G_1 \rtimes H$. The map $G_{1} \rtimes H
+\rightarrow \text{Mp}\left(\mathbb{W}\right)$ defined by $\left(g, h\right)
+\mapsto g L\left(h\right)$ is a homomorphism. Let 
+
+\[R = \left\{\left(g, h\right) \in G' \times H : \lambda\left(g\right) =
+\lambda\left(h\right)\right\}.\]
+
+The map $R \rightarrow G_{1} \rtimes H$ defined by 
+
+\[\left(g, h\right) \mapsto \left(gd\left(\lambda\left(g\right)\right)^{-1}, h\right)\]
+
+is a homomorphism. Thus, the composition $\omega$ 
+
+\[R \rightarrow G_{1} \rtimes H \rightarrow \text{Mp}\left(\mathbb{W}\right)
+\rightarrow \text{Aut}_{\mathbb{C}}\left(\mathcal{S}\right)\]
+
+is a homomorphism. This representation is smooth.
+
+$\omega$ is called the \textbf{extended Weil representation associated to $X$ and
+$Y$}. We have 
+
+\[\omega\left(g, h\right) = r\left(gh\right).\]
+
+\textbf{Proposition 3.4.} Let $\Omega = \text{c-Ind}_{G_{1}}^{G'} r$. For each
+$h \in H$, define an operator $\Omega\left(h\right)$ on the space $\mathcal{T}$
+of $\Omega$ by 
+
+\[\left(\Omega\left(h\right)f\right)\left(g\right) =
+r\left(L\left(h\right)\right) \cdot
+f\left(d\left(\lambda\left(h\right)\right)^{-1}g\right).\]
+
+Then the map 
+
+\[\Omega : G' \times H \rightarrow \text{Aut}_{\mathbb{C}}\left(\mathcal{T}\right)\]
+
+defined by $\left(g, h\right) \mapsto \Omega\left(g\right)\Omega\left(h\right)$
+is a homomorphism. This representation is smooth. We call $\Omega$ the
+\textbf{induced Weil representation}.
+
+\textbf{Proposition 3.5.} We have 
+
+\[\Omega \cong \text{c-Ind}_{R}^{G' \times H} \omega.\]
+
+\textbf{The group $G$ and the representation $\Omega^{+}$.} Let $G$ be the group
+of $g \in G'$ such that $\lambda\left(g\right) \in \lambda\left(H\right)$. A
+smooth representation $\left(\Omega^{+}, \mathcal{T}^{+}\right)$ of
+$\Omega|_{G}$ is defined, and turns out to be isomorphic to $\text{c-Ind}_{R}^{G
+\times H} \omega$.
+
+\end{document}
