@@ -23,9 +23,9 @@
 Let $G$ be a \textbf{l-group}. So, $G$ is a (Hausdorff) topological group and
 has a neighborhood base of the identity consisting of open compact subgroups.
 
-Let $V$ be a complex normed vector space. We define a function $f : G \rightarrow V$ to be
-\textbf{smooth} if it is locally constant, i.e., for each $x \in G$ there is a
-neighborhood $U$ of $x$ such that $f|_{U}$ is constant.
+Let $V$ be a complex normed vector space. We define a function $f : G
+\rightarrow V$ to be \textbf{smooth} if it is locally constant, i.e., for each
+$x \in G$ there is a neighborhood $U$ of $x$ such that $f|_{U}$ is constant.
 
 \textbf{Proposition 1.} A function $f : G \rightarrow V$ is smooth if and only if
 for all sets $S \subseteq V$, the preimage $f^{-1}\left(S\right)$ is open.
@@ -46,10 +46,11 @@ neighborhood of $x$ on which $f$ is constant. So $f$ is smooth.
 \textbf{Definiton.} We say that a function $f : G \rightarrow V$ is
 \textbf{uniformly locally constant on the right} (resp. on the left) if there
 exists an open neighborhood $U$ of the identity in $G$ such that $f|_{xU} \equiv
-f\left(x\right)$ (resp. $f|_{Ux} \equiv f\left(x\right)$) for all $x \in G$.
-smooth. If $G$ is an abelian group, the notions of uniformly locally constant on
-the right and uniformly locally constant on the left agree and we simply say
-that $f$ is uniformly locally constant.
+f\left(x\right)$ (resp. $f|_{Ux} \equiv f\left(x\right)$) for all $x \in G$. It
+is clear that if a function is uniformly locally constant on the left or right,
+then it is smooth. If $G$ is an abelian group, the notions of uniformly locally
+constant on the right and uniformly locally constant on the left agree and we
+simply say that $f$ is uniformly locally constant.
 
 \textbf{Proposition 3.} Suppose that $f : G \rightarrow V$ is a group
 homomorphism. The following are equivalent
@@ -73,12 +74,13 @@ we have
 so $f$ is uniformly locally constant on the right. Similarly, $f$ is uniformly
 locally constant on the left. Furthermore, since $f$ has an neighborhood base of
 the identity consisting of open compact subgroups, $U$ must contain some open
-compact subgroup on which $f$ is constant. 
+compact subgroup on which $f$ is constant. This proves that $i)$ implies $ii)$,
+$iii)$, and $iv)$. That $ii)$ implies $i)$ and $iii)$ implies $i)$ is trivial.
 
 If $f$ is constant on some open compact subgroup, then as above we show that $f$
-is locally constant.
+is locally constant on the left or right. So $iv)$ implies $ii)$ and $iii)$.
 
-Suppose that $f$ is continuous. Let $U$ be the set of $v \in V$ such that for
+Finally, we show $v)$ implies $i)$. That $i)$ implies $v)$ was corollary $2$. Suppose that $f$ is continuous. Let $U$ be the set of $v \in V$ such that for
 $\left|v\right| < \epsilon$ for some arbitrary $\epsilon > 0$. The set
 $f^{-1}\left(U\right)$ is an open neighborhood of the identity in $G$ and
 therefore contains an open compact subgroup $K \subseteq G$. The image
