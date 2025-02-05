@@ -1,0 +1,168 @@
+\documentclass[12pt]{article}
+
+\usepackage{microtype}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+\usepackage{tikz-cd}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{A Note on Smooth Representations}
+\author{Nick Pilotti}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+Let $G$ be a \textbf{l-group}. So, $G$ is a (Hausdorff) topological group and
+has a neighborhood base of the identity consisting of open compact subgroups.
+
+Let $V$ be a complex topological vector space (we take $V$ to have the discrete
+topology if one is not given). We define a function $f : G \rightarrow V$ to be
+\textbf{smooth} if it is locally constant, i.e., for each $x \in G$ there is a
+neighborhood $U$ of $x$ such that $f|_{U}$ is constant.
+
+\textbf{Proposition 1.} A function $f : G \rightarrow V$ is smooth if and only if
+for all sets $S \subseteq V$, the preimage $f^{-1}\left(S\right)$ is open.
+
+\textbf{Proof.} Suppose that $f$ is smooth. Take $S = \left\{v\right\}$ to be a
+singleton. For each $x \in G$ with $f\left(x\right) = v$, there is an open
+neighborhood $U$ of $x$ such that $f|_{U} \equiv v$. Hence, the set
+$f^{-1}\left(\left\{v\right\}\right)$ is open. If $S \subseteq V$ is arbitrary,
+then $f^{-1}\left(S\right) = \cup_{v \in S} f^{-1}\left(\left\{v\right\}\right)$
+is a union of open sets and therefore open.
+
+Conversely, suppose for all sets $S \subseteq V$, $f^{-1}\left(S\right)$ is
+open. For any $x \in G$, $f^{-1}\left(f\left(x\right)\right)$ is an open
+neighborhood of $x$ on which $f$ is constant. So $f$ is smooth.
+
+\textbf{Corollary 2.} If $f : G \rightarrow V$ is smooth, then $f$ is continuous.
+
+\textbf{Definiton.} We say that a function $f : G \rightarrow V$ is
+\textbf{uniformly locally constant on the right} (resp. on the left) if there
+exists an open neighborhood $U$ of the identity in $G$ such that $f|_{xU} \equiv
+f\left(x\right)$ (resp. $f|_{Ux} \equiv f\left(x\right)$) for all $x \in G$.
+smooth. If $G$ is an abelian group, the notions of uniformly locally constant on
+the right and uniformly locally constant on the left agree and we simply say
+that $f$ is uniformly locally constant.
+
+\textbf{Proposition 3.} Suppose that $f : G \rightarrow V$ is a group
+homomorphism. The following are equivalent
+
+$i$) $f$ is smooth.
+
+$ii$) $f$ is uniformly locally constant on the right.
+
+$iii$) $f$ is uniformly locally constant on the left.
+
+$iv$) $f$ is constant on some open compact subgroup.
+
+$v$) $f$ is continuous.
+
+\textbf{Proof.} If $f$ is smooth, then $f$ is constant on some open neighborhood
+$U$ of the identity. Hence, $f|_{U} \equiv 0$. For all $x \in G$ and $u \in U$,
+we have
+%
+\[f\left(xu\right) = f\left(x\right) + f\left(u\right) = f\left(x\right),\]
+%
+so $f$ is uniformly locally constant on the right. Similarly, $f$ is uniformly
+locally constant on the left. Furthermore, since $f$ has an neighborhood base of
+the identity consisting of open compact subgroups, $U$ must contain some open
+compact subgroup on which $f$ is constant. 
+
+If $f$ is constant on some open compact subgroup, then as above we show that $f$
+is locally constant.
+
+Suppose that $f$ is continuous. Let $U$ be the set of $v \in V$ such that for
+$\left|v\right| < \epsilon$ for some arbitrary $\epsilon > 0$. The set
+$f^{-1}\left(U\right)$ is an open neighborhood of the identity in $G$ and
+therefore contains an open compact subgroup $K \subseteq G$. The image
+$f\left(K\right) \subseteq U$ is a subgroup of $V$ and therefore must be the
+trivial subgroup. Note that this ultimately depends on the Archimedean property
+of $\mathbb{C}$. If there was some $v \in f\left(K\right)$ with $v \neq 0$,
+there is a natural number $n$ large enough so that $\left|nv\right| > \epsilon$
+but also $nv \in f\left(K\right)$.
+
+\textbf{Definition.} A representation of $G$ is the data of a complex vector
+space $E$ and a group homomorphism $\pi : G \rightarrow
+\text{GL}\left(E\right)$. We say that a vector $v \in V$ is \textbf{smooth} if
+the stablizer of $v$ in $G$ contains a compact open subgroup. We say that a
+$\pi$ is a \textbf{smooth representation} if every vector in $V$ is smooth. By
+proposition 3, a vector $v \in V$ is smooth if and only if the orbit map $g
+\mapsto g\left(v\right)$ is smooth.
+
+\textbf{Lemma 4.} Let $f : G \rightarrow V$ be compactly supported. If $f$ is
+smooth, then $f$ is uniformly locally constant on the right and left (compare
+this proposition to Folland, Abstract Harmonic Analysis, 2.6).
+
+\textbf{Proof.} Let $K = \text{Supp} \; f$. For each $x \in K$, there is a
+neighborhood $U_{x}$ of $1$ such that $f|_{xU_{x}}$ is constant. There is a
+symmetric neighborhood $V_{x}$ of $1$ such that $V_{x} V_{x} \subseteq U_{x}$
+(c.f. Folland, Abstract Harmonic Analysis, 2.1.b). The sets $x V_{x}$ cover $K$,
+so there exist $x_1, ..., x_{n} \in K$ such that $K \subseteq \cup_{1}^{n}
+x_{j}V_{x_{j}}$. Let $V = \cap_{1}^{n} V_{x_{j}}$.
+
+If $x \in K$ then there is some $j$ for which $x_{j}^{-1} x \in V_{x_{j}}$, so
+that $xy = x_{j}\left(x_{j}^{-1}x\right)y \in x_{j}U_{x_{j}}$ for all $y \in V$.
+Hence, $f\left(xy\right) = f\left(x_{j}\right)$ for all $y \in V$.
+
+Now take $x \not\in K$ and suppose towards contradiction that $xy \in K$ for
+some $y \in V$, then $f\left(xy\right) = f\left(xyy^{-1}\right) =
+f\left(x\right)$ by the previous paragraph. But since $f$ is locally constant,
+$K$ is exactly the set of $x \in G$ such that $f\left(x\right) \neq 0$.
+Therefore, $f\left(x\right) = f\left(xy\right) \neq 0$, contradicting that $x
+\not\in K$. Hence, $xy \not\in K$ for all $y \in V$ and $f|_{xV} \equiv 0$.
+
+\textbf{Proposition 5.} Let $E$ be a vector space of functions $f : G
+\rightarrow V$ and suppose we have a representation of $G$ on $E$ by the right
+(resp. left) regular action $\left(gf\right)\left(x\right) = f\left(xg\right)$
+(resp. $\left(gf\right)\left(x\right) = f\left(g^{-1}x\right)$) for $g \in G$
+and $f \in E$. $f \in E$ is a smooth vector if and only if $f$ is uniformly
+locally constant on the right (resp. left). If $f \in E$ is compactly supported,
+then $f$ is smooth vector if and only if $f$ is smooth function. 
+
+\textbf{Proof.} We show it only for the case of the right regular action, as the
+case of the left regular action is similar. $f \in E$ is a smooth vector if and
+only if the stabilizer of orbit map 
+%
+\[g \mapsto \left(x \mapsto f\left(xg\right)\right)\]
+%
+contains a compact open subgroup $K$. That is 
+%
+\[f\left(xg\right) = f\left(x\right)\]
+%
+for all $x \in G$ and $g \in K$. Hence, $f$ is a smooth vector if and only if
+$f$ is uniformly locally constant on the right.
+
+Now, suppose that $f \in E$ is compactly supported. By the above, we only need
+to show that if $f$ is smooth then $f$ is uniformly locally constant on the
+right, which was already proved in the lemma. 
+
+\textbf{Example.} Here is an example of a function which is locally constant but
+not uniformly locally constant, i.e., $f$ is a smooth function but not a smooth
+vector in the regular representation on smooth functions. In $\mathbb{Q}_{2}$,
+let $S_{N} = 2^{-N} + 2^{N}\mathbb{Z}_{2}$ for $N \geq 1$. Let $f = \sum_{N =
+1}^{\infty} \chi_{S_{N}}$, where $\chi_{S_{N}}$ is the characteristic function
+of $S_{N}$. For $x \in \mathbb{Q}_{2}$, if $x \in \mathbb{Z}_{2}$, then
+$f\left(x\right) = 0$. Otherwise, write
+%
+\[x = 2^{-N} + a_{-N + 1} 2^{-N + 1} + ...\]
+%
+Let $M$ be the smallest integer other than $-N$ such that $a_{M} \neq 0$ (if
+such an integer exists). If $M$ does not exist or if $M \geq N$, then
+$f\left(x\right) = 1$. Otherwise, $f\left(x\right) = 0$. 
+
+$f$ is locally constant, because it is a sum of characterstic functions of
+disjoint open sets. $f$ is not uniformly locally constant. If $U$ is some open
+neighborhood of the identity in $\mathbb{Q}_{2}$, then $U$ contains
+$2^{n}\mathbb{Z}_{2}$ for some $n \geq 1$. For $m > n$, we have $f\left(2^{-m} +
+2^{m}\right) = 1$, but $f\left(2^{-m} + 2^{m} + 2^{n}\right) = 0$ and $2^{n} \in
+U$.
+
+\end{document}
